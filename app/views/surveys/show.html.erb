@@ -1,0 +1,18 @@
+Later this will show how many students there are. 
+For now, it checks that all the questions appear.
+
+<div>
+<% @survey.questions.each do |question| %>
+  
+  <div>
+    <%= question.content %>
+    
+    <% question.choices.each do |choice| %>
+      <div>
+        <%= choice.content %>
+      </div>
+    <% end %>
+  
+  </div>
+<% end %>
+</div>
