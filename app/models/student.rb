@@ -3,4 +3,8 @@ class Student < ActiveRecord::Base
 
   belongs_to :survey
   has_many :responses
+
+  def add_responses(choices)
+    self.responses.build()
+  end
 end
