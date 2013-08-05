@@ -4,9 +4,6 @@ class Question < ActiveRecord::Base
   belongs_to :survey
   has_many :choices
 
-  def build_with_agree_choices(q_content)
-  end
-
   def build_agree_choices
     self.choices.build(:content => "Strongly Agree", :value => 5)
     self.choices.build(:content => "Agree", :value => 4)
