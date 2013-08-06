@@ -1,2 +1,22 @@
-<h1>Responses#new</h1>
-<p>Find me in app/views/responses/new.html.erb</p>
+<div class="survey">
+<%= form_tag student_responses_path, :method => 'POST' do %>
+  <% @survey.questions.each do |question| %>
+
+    
+    <div class="question">
+      
+      <%= question.content %>
+      
+      <% question.choices.each do |choice| %>
+        <div class="choice">
+          <%= label_tag choice.content %>
+          <%= radio_button_tag question.id, choice.id, true %>
+        </div>
+      <% end %>
+    
+    </div>
+  
+  <% end %>
+  <%= submit_tag "Submit" %>
+<% end %>
+</div>

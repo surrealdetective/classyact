@@ -1,15 +1,4 @@
 Classyact::Application.routes.draw do
-  get "responses/new"
-
-  get "responses/create"
-
-  get "students/new"
-
-  get "students/show"
-
-  get "students/create"
-
-  get "students/index"
 
   resources :surveys do 
     resources :students, :only => [:new, :show, :create, :index]
