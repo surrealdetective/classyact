@@ -9,12 +9,10 @@ class ResponsesController < ApplicationController
 
   #this should lead to student show page
   def create
-    raise params.inspect
     @student = Student.find_by_id(params[:student_id])
-    #use the choices[] syntax?
-    params[:questions].each do |question|
-      @student.responses.build(:choice_id => params[question])
+    @student.survey.questions.each do |question|
+      @student.responses.build(:choice_id => params[question.id.to_s])
     end
-    @student.add_responses(params[:responses])
+    @student.save
   end
 end
