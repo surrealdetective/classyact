@@ -7,19 +7,34 @@ class Survey < ActiveRecord::Base
   has_many :choices, :through => :questions
 
   #Current Ranges for Questions by ID
-  THINKING = 1..8
-  META_THINKING = 9..11
-  EXPECTATIONS = 12..19
-  META_EXPECTATIONS = 20..22
-  INTERACTIONS = 23..30
-  META_INTERACTIONS = 31..33
-  DISCIPLINE = 34..41
-  META_DISCIPLINE = 42..44
-  WILLING = 45..52
-  META_WILLING = 53..55
-  DIRECTION = 56..63
-  META_DIRECTION = 64..66
-  META_META = 67..69
+  # THINKING = 1..8
+  # META_THINKING = 9..11
+  # EXPECTATIONS = 12..19
+  # META_EXPECTATIONS = 20..22
+  # INTERACTIONS = 23..30
+  # META_INTERACTIONS = 31..33
+  # DISCIPLINE = 34..41
+  # META_DISCIPLINE = 42..44
+  # WILLING = 45..52
+  # META_WILLING = 53..55
+  # DIRECTION = 56..63
+  # META_DIRECTION = 64..66
+  # META_META = 67..69
+
+  #Current Ranges for Questions by Index
+  THINKING = 0..7
+  META_THINKING = 8..10
+  EXPECTATIONS = 12..18
+  META_EXPECTATIONS = 19..21
+  INTERACTIONS = 22..29
+  META_INTERACTIONS = 30..32
+  DISCIPLINE = 33..40
+  META_DISCIPLINE = 41..43
+  WILLING = 44..51
+  META_WILLING = 52..54
+  DIRECTION = 55..62
+  META_DIRECTION = 63..65
+  META_META = 66..68
 
 
 
@@ -147,6 +162,34 @@ class Survey < ActiveRecord::Base
     self.questions.collect {|question| question_response_data
         .where("questions.id" => question.id)
         .where("choices.id" => student.responses[question.id - 1].choice_id).first.value}
+  end  
+
+  def score_graph(student_response)
+    scores = {}
+    scores[thinking] = student_response[THINKING].inject{|sum, element| sum + element}
+    scores[expectations] = student_response[EXPECTATIONS].inject{|sum, element| sum + element}
+    scores[interactions] = student_response[INTERACTIONS].inject{|sum, element| sum + element}
+    scores[discipline] = student_response[DISCIPLINE].inject{|sum, element| sum + element}
+    scores[willing] = student_response[WILLING].inject{|sum, element| sum + element}
+    scores[direction] = student_response[DIRECTION].inject{|sum, element| sum + element}
+    scores
+  end
+
+  def score_factors(student_response)
+    scores[meta_thinking] = student_response[META_THINKING]
+    scores[meta_expectations] = student_response[META_EXPECTATIONS]    
+    scores[meta_interactions] = student_response[META_INTERACTIONS]    
+    scores[meta_discipline] = student_response[META_DISCIPLINE]
+    scores[meta_willing] = student_response[META_WILLING]   
+    scores[meta_direction] = student_response[META_DIRECTION]
+  end
+
+  def aggregate_scores
+    scores = {}
+    scores[:best] = self.students.inject { |sum, student| sum + "#student response for #67"}
+    scores[:improve] = self.students.inject { |sum, student| sum + "#student response for #68"}
+    scores[:import] = self.students.inject { |sum, student| sum + "#student response for #69"}
+    scores
   end
 
 end
