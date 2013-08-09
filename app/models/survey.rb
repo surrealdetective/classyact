@@ -4,6 +4,10 @@ class Survey < ActiveRecord::Base
   belongs_to :user
   has_many :students
   has_many :questions
+  has_many :choices, :through => :questions
+
+
+
 
   def populate_questions
     #Thinking Factor:
@@ -35,6 +39,7 @@ class Survey < ActiveRecord::Base
     expectations_10 = self.build_question_with_meta_choices(:content => 'Of the above 8 questions, select what "needs most improvement" to you.')
     expectations_11 = self.build_question_with_meta_choices(:content => 'Of the above 8 questions, select what is "best performing" to you.')
 
+
     #Interactions-Factor:
     #question 23
     interactions_1 = self.build_question_with_frequency_choices(:content => "On an average school day, I sit and listen to others talk.")
@@ -49,7 +54,6 @@ class Survey < ActiveRecord::Base
     interactions_9 = self.build_question_with_meta_choices(:content => 'Of the above 8 questions, select what is "most important" to you.')
     interactions_10 = self.build_question_with_meta_choices(:content => 'Of the above 8 questions, select what "needs most improvement" to you.')
     interactions_11 = self.build_question_with_meta_choices(:content => 'Of the above 8 questions, select what is "best performing" to you.')
-
 
     #Self-discipline Factor:
     #question 34
@@ -97,6 +101,20 @@ class Survey < ActiveRecord::Base
     direction_11 = self.build_question_with_meta_choices(:content => 'Of the above 8 questions, select what is "best performing" to you.')
     #question 66 above.
 
+  THINKING = 1..8
+  META-THINKING = 9..11
+  EXPECTATIONS = 12..19
+  META-EXPECTATIONS = 20..22
+  INTERACTIONS = 23..30
+  META-INTERACTIONS = 31..33
+  DISCIPLINE = 34..41
+  META-DISCIPLINE = 42..44
+  WILLING = 45..52
+  META-WILLING = 51..53
+  DIRECTION = 58..65
+  SELF-DIRECTION = 66..68
+  META-META = 69..71
+
     #Overview Questions:
     #question 67
     overview_1 = self.build_question_with_overview_choices(:content => 'Of the above 6 factors, select what is "most important" to you.')
@@ -123,6 +141,13 @@ class Survey < ActiveRecord::Base
   def build_question_with_overview_choices(q_content)
     q = self.questions.build(q_content)
     q.build_overview_choices
+  end
+
+  def score_one(student)
+    question_response_data = Choice.joins(:question => :survey)
+    self.questions.collect {|question| question_response_data
+        .where("questions.id" => question.id)
+        .where("choices.id" => student.responses[question.id - 1].choice_id).first.value}
   end
 
 end
