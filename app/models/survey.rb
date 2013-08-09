@@ -6,6 +6,20 @@ class Survey < ActiveRecord::Base
   has_many :questions
   has_many :choices, :through => :questions
 
+  #Current Ranges for Questions by ID
+  THINKING = 1..8
+  META_THINKING = 9..11
+  EXPECTATIONS = 12..19
+  META_EXPECTATIONS = 20..22
+  INTERACTIONS = 23..30
+  META_INTERACTIONS = 31..33
+  DISCIPLINE = 34..41
+  META_DISCIPLINE = 42..44
+  WILLING = 45..52
+  META_WILLING = 53..55
+  DIRECTION = 56..63
+  META_DIRECTION = 64..66
+  META_META = 67..69
 
 
 
@@ -100,21 +114,6 @@ class Survey < ActiveRecord::Base
     direction_10 = self.build_question_with_meta_choices(:content => 'Of the above 8 questions, select what "needs most improvement" to you.')
     direction_11 = self.build_question_with_meta_choices(:content => 'Of the above 8 questions, select what is "best performing" to you.')
     #question 66 above.
-
-  THINKING = 1..8
-  META-THINKING = 9..11
-  EXPECTATIONS = 12..19
-  META-EXPECTATIONS = 20..22
-  INTERACTIONS = 23..30
-  META-INTERACTIONS = 31..33
-  DISCIPLINE = 34..41
-  META-DISCIPLINE = 42..44
-  WILLING = 45..52
-  META-WILLING = 51..53
-  DIRECTION = 58..65
-  SELF-DIRECTION = 66..68
-  META-META = 69..71
-
     #Overview Questions:
     #question 67
     overview_1 = self.build_question_with_overview_choices(:content => 'Of the above 6 factors, select what is "most important" to you.')
