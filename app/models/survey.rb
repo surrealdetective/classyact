@@ -175,22 +175,43 @@ class Survey < ActiveRecord::Base
     return scores
   end
 
-  def student_meta_scores(student_response)
-    scores[meta_thinking] = student_response[META_THINKING]
-    scores[meta_expectations] = student_response[META_EXPECTATIONS]    
-    scores[meta_interactions] = student_response[META_INTERACTIONS]    
-    scores[meta_discipline] = student_response[META_DISCIPLINE]
-    scores[meta_willing] = student_response[META_WILLING]   
-    scores[meta_direction] = student_response[META_DIRECTION]
+  def find_student_factor_scores(student)
+    @score_totals = self.student_score(student)
+    self.student_factor_scores(@score_totals)
   end
 
-  def class_factor_scores()
-    scores = {}
-    #oh shit this actually applies to each factor
-    scores[:best] = self.students.inject { |sum, student| sum + "#student response for #67"}
-    scores[:improve] = self.students.inject { |sum, student| sum + "#student response for #68"}
-    scores[:import] = self.students.inject { |sum, student| sum + "#student response for #69"}
-    scores
+  def find_class_avg_scores
+    class_scores = {:thinking => 0, :expectations => 0, :interactions => 0, :discipline => 0, :willing => 0, :direction => 0}
+    #add up the sum of all student factor scores
+    self.students.each do |student|
+      scores = self.find_student_factor_scores(student)
+      class_scores[:thinking] += scores[:thinking]
+      class_scores[:expectations] += scores[:expectations]
+      class_scores[:interactions] += scores[:interactions]
+      class_scores[:discipline] += scores[:discipline]
+      class_scores[:willing] += scores[:willing]
+      class_scores[:direction] += scores[:direction] 
+    end
+    student_count = self.students.count
+    class_scores.values.collect { |class_factor_sum| class_factor_sum / student_count}
   end
+
+  # def student_meta_scores(student_response)
+  #   scores[meta_thinking] = student_response[META_THINKING]
+  #   scores[meta_expectations] = student_response[META_EXPECTATIONS]    
+  #   scores[meta_interactions] = student_response[META_INTERACTIONS]    
+  #   scores[meta_discipline] = student_response[META_DISCIPLINE]
+  #   scores[meta_willing] = student_response[META_WILLING]   
+  #   scores[meta_direction] = student_response[META_DIRECTION]
+  # end
+
+  # def class_factor_scores()
+  #   scores = {}
+  #   #oh shit this actually applies to each factor
+  #   scores[:best] = self.students.inject { |sum, student| sum + "#student response for #67"}
+  #   scores[:improve] = self.students.inject { |sum, student| sum + "#student response for #68"}
+  #   scores[:import] = self.students.inject { |sum, student| sum + "#student response for #69"}
+  #   scores
+  # end
 
 end

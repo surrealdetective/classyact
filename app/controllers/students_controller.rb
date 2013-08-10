@@ -12,8 +12,7 @@ class StudentsController < ApplicationController
   def show
     @student = Student.find_by_id(params[:id])
     @survey = @student.survey
-    @score_totals = @survey.student_score(@student)
-    @factor_scores = @survey.student_factor_scores(@score_totals)
+    @factor_scores = @survey.find_student_factor_scores(@student)
   end
 
   #show this for the teacher only
