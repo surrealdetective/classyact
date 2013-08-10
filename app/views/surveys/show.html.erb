@@ -1,18 +1,8 @@
-Later this will show how many students there are. 
-For now, it checks that all the questions appear.
+<nav>
+  <ul>
+    <li><%= link_to "List of Students", survey_students_path(@survey) %></li>
+  </ul>
+</nav>
 
-<div>
-<% @survey.questions.each do |question| %>
-  
-  <div>
-    <%= question.content %>
-    
-    <% question.choices.each do |choice| %>
-      <div>
-        <%= choice.content %>
-      </div>
-    <% end %>
-  
-  </div>
-<% end %>
-</div>
+<h1>Your Results</h1>
+

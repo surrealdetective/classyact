@@ -14,5 +14,7 @@ class ResponsesController < ApplicationController
       @student.responses.build(:choice_id => params[question.id.to_s])
     end
     @student.save
+    redirect_to survey_student_path(@student.survey, @student)
   end
+
 end
