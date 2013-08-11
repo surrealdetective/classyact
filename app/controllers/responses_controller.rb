@@ -9,6 +9,7 @@ class ResponsesController < ApplicationController
 
   #this should lead to student show page
   def create
+    raise params.inspect
     @student = Student.find_by_id(params[:student_id])
     @survey = @student.survey
     @survey.questions.each do |question|

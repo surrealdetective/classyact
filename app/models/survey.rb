@@ -166,40 +166,24 @@ class Survey < ActiveRecord::Base
   #     .where("choices.id" => student.responses[question.id - 1].choice_id).first.value}
   # end  
 
+  #find values of student scores
   def student_score(student)
     Choice.joins(:responses)
     .where("responses.student_id" => student.id)
     .collect {|choice| choice.value}
   end
 
-  #finds the choice_id for other shits.
-  def student_selection(student)
-    question_response_data = Choice.joins(:question => :survey)
-    self.questions.collect {|question| question_response_data
-        .where("questions.id" => question.id)
-        .where("choices.id" => student.responses[question.id - 1].choice_id).first}
-  end
-
-  # def student_meta_selections(student)
-  #   scores = {:meta_import => 0, :meta_improve => 0, :meta_perform => 0}
-  #   Survey.joins(:responses).joins(:questions)
-  #   .where("questions.id" => )
-  #   .where("responses.survey_id" => self.id)
-  #   .where("responses.choice_id OR responses.choice_id OR responses.choice_id OR responses.choice_id OR responses.choice_id OR responses.choice_id OR")
-  #   #for each student, count their answer on 67 and add it to meta_import
-  #   #for each student, count their answer on 68 and add it to meta_improve
 
 
-  # end
-
+  #
   def student_factor_scores(student_response)
     scores = {}
-    scores[:thinking] = student_response[THINKING].inject{|sum, element| sum + element} /8
-    scores[:expectations] = student_response[EXPECTATIONS].inject{|sum, element| sum + element}/8
-    scores[:interactions] = student_response[INTERACTIONS].inject{|sum, element| sum + element}/8
-    scores[:discipline] = student_response[DISCIPLINE].inject{|sum, element| sum + element}/8
-    scores[:willing] = student_response[WILLING].inject{|sum, element| sum + element}/8
-    scores[:direction] = student_response[DIRECTION].inject{|sum, element| sum + element}/8
+    scores[:thinking] = student_response[THINKING].inject{|sum, element| sum + element} /8.0
+    scores[:expectations] = student_response[EXPECTATIONS].inject{|sum, element| sum + element}/8.0
+    scores[:interactions] = student_response[INTERACTIONS].inject{|sum, element| sum + element}/8.0
+    scores[:discipline] = student_response[DISCIPLINE].inject{|sum, element| sum + element}/8.0
+    scores[:willing] = student_response[WILLING].inject{|sum, element| sum + element}/8.0
+    scores[:direction] = student_response[DIRECTION].inject{|sum, element| sum + element}/8.0
     return scores
   end
 
@@ -221,15 +205,26 @@ class Survey < ActiveRecord::Base
       class_scores[:direction] += scores[:direction] 
     end
     student_count = self.students.count
-    class_scores.values.collect { |class_factor_sum| class_factor_sum / student_count}
+    class_scores.values.collect { |class_factor_sum| class_factor_sum / student_count.to_f}
   end
 
-  def find_class_import_avg
-    meta_scores = {:import => 0, :improve => 0, :perform => 0}
+  #track how many times each value is selected, and count it for that factor
+  def find_class_meta_selections
+    factor_selection = {0 => :thinking, 1 => :expectations, 2 => :interactions, 3 => :discipline, 4 => :willing, 5 => :direction}
+    scores = {:thinking => 0, :expectations => 0, :interactions => 0, :discipline => 0, :willing => 0, :direction => 0}
     self.students.each do |student|
-      scores = self.find_student_factor_scores(student)
+      index_of_import = self.questions[-3].choices.index(Choice.find_by_id(student.responses[-3].choice_id))
+      scores[factor_selection[index_of_import]] += 1
     end
+    scores
   end
+
+  # def find_class_import_avg
+  #   meta_scores = {:import => 0, :improve => 0, :perform => 0}
+  #   self.students.each do |student|
+  #     scores = self.find_student_factor_scores(student)
+  #   end
+  # end
 
   # def student_meta_scores(student_response)
   #   scores[meta_thinking] = student_response[META_THINKING]
