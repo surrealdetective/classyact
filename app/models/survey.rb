@@ -158,24 +158,12 @@ class Survey < ActiveRecord::Base
     q.build_overview_choices
   end
 
-  #find the value for averages
-  # def student_score(student)
-  #   question_response_data = Choice.joins(:question => :survey)
-  #   self.questions.collect {|question| question_response_data
-  #     .where("questions.id" => question.id)
-  #     .where("choices.id" => student.responses[question.id - 1].choice_id).first.value}
-  # end  
-
-  #find values of student scores
   def student_score(student)
     Choice.joins(:responses)
     .where("responses.student_id" => student.id)
     .collect {|choice| choice.value}
   end
 
-
-
-  #
   def student_factor_scores(student_response)
     scores = {}
     scores[:thinking] = student_response[THINKING].inject{|sum, element| sum + element} /8.0
@@ -208,40 +196,18 @@ class Survey < ActiveRecord::Base
     class_scores.values.collect { |class_factor_sum| class_factor_sum / student_count.to_f}
   end
 
-  #track how many times each value is selected, and count it for that factor
-  def find_class_meta_selections
+ 
+  def find_class_meta_selections(lens)
+    lenses = {:import => -3, :improve => -2, :perform => -1}
     factor_selection = {0 => :thinking, 1 => :expectations, 2 => :interactions, 3 => :discipline, 4 => :willing, 5 => :direction}
     scores = {:thinking => 0, :expectations => 0, :interactions => 0, :discipline => 0, :willing => 0, :direction => 0}
     self.students.each do |student|
-      index_of_import = self.questions[-3].choices.index(Choice.find_by_id(student.responses[-3].choice_id))
-      scores[factor_selection[index_of_import]] += 1
+      if student.responses.present?
+        index_of_lens = self.questions[lenses[lens]].choices.index(Choice.find_by_id(student.responses[lenses[lens]].choice_id))
+        scores[factor_selection[index_of_lens]] += 1
+      end
     end
     scores
   end
-
-  # def find_class_import_avg
-  #   meta_scores = {:import => 0, :improve => 0, :perform => 0}
-  #   self.students.each do |student|
-  #     scores = self.find_student_factor_scores(student)
-  #   end
-  # end
-
-  # def student_meta_scores(student_response)
-  #   scores[meta_thinking] = student_response[META_THINKING]
-  #   scores[meta_expectations] = student_response[META_EXPECTATIONS]    
-  #   scores[meta_interactions] = student_response[META_INTERACTIONS]    
-  #   scores[meta_discipline] = student_response[META_DISCIPLINE]
-  #   scores[meta_willing] = student_response[META_WILLING]   
-  #   scores[meta_direction] = student_response[META_DIRECTION]
-  # end
-
-  # def class_factor_scores()
-  #   scores = {}
-  #   #oh shit this actually applies to each factor
-  #   scores[:best] = self.students.inject { |sum, student| sum + "#student response for #67"}
-  #   scores[:improve] = self.students.inject { |sum, student| sum + "#student response for #68"}
-  #   scores[:import] = self.students.inject { |sum, student| sum + "#student response for #69"}
-  #   scores
-  # end
 
 end
