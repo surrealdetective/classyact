@@ -5,6 +5,7 @@ class Survey < ActiveRecord::Base
   has_many :students
   has_many :questions
   has_many :choices, :through => :questions
+  has_many :responses, :through => :choices
 
   #Current Ranges for Questions by ID
   # THINKING = 1..8
@@ -35,7 +36,7 @@ class Survey < ActiveRecord::Base
   DIRECTION = 55..62
   META_DIRECTION = 63..65
   META_META = 66..68
-
+  # {:meta_import => 66, :meta_improve => 67, :meta_perform => 68}
 
 
   def populate_questions
@@ -157,12 +158,37 @@ class Survey < ActiveRecord::Base
     q.build_overview_choices
   end
 
+  #find the value for averages
+  # def student_score(student)
+  #   question_response_data = Choice.joins(:question => :survey)
+  #   self.questions.collect {|question| question_response_data
+  #     .where("questions.id" => question.id)
+  #     .where("choices.id" => student.responses[question.id - 1].choice_id).first.value}
+  # end  
+
   def student_score(student)
+    
+  end
+
+  #finds the choice_id for other shits.
+  def student_selection(student)
     question_response_data = Choice.joins(:question => :survey)
     self.questions.collect {|question| question_response_data
         .where("questions.id" => question.id)
-        .where("choices.id" => student.responses[question.id - 1].choice_id).first.value}
-  end  
+        .where("choices.id" => student.responses[question.id - 1].choice_id).first}
+  end
+
+  # def student_meta_selections(student)
+  #   scores = {:meta_import => 0, :meta_improve => 0, :meta_perform => 0}
+  #   Survey.joins(:responses).joins(:questions)
+  #   .where("questions.id" => )
+  #   .where("responses.survey_id" => self.id)
+  #   .where("responses.choice_id OR responses.choice_id OR responses.choice_id OR responses.choice_id OR responses.choice_id OR responses.choice_id OR")
+  #   #for each student, count their answer on 67 and add it to meta_import
+  #   #for each student, count their answer on 68 and add it to meta_improve
+
+
+  # end
 
   def student_factor_scores(student_response)
     scores = {}
@@ -194,6 +220,13 @@ class Survey < ActiveRecord::Base
     end
     student_count = self.students.count
     class_scores.values.collect { |class_factor_sum| class_factor_sum / student_count}
+  end
+
+  def find_class_import_avg
+    meta_scores = {:import => 0, :improve => 0, :perform => 0}
+    self.students.each do |student|
+      scores = self.find_student_factor_scores(student)
+    end
   end
 
   # def student_meta_scores(student_response)

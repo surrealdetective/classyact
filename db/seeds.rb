@@ -23,6 +23,16 @@ sam = s.students.build(:username => 'sam')
 joe = s.students.build(:username => 'joe')
 s.save
 
+s = avi.surveys.new(:subject => "Ruby on Rails", :semester => "Fall 2013")
+s.populate_questions
+avi.save
+
+david = s.students.build(:username => "david")
+daniel = s.students.build(:username => "daniel")
+jennifer = s.students.build(:username => "jennifer")
+alex = s.students.build(:username => "alex")
+s.save
+
 
 #students respond to the survey
 
