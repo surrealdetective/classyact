@@ -167,7 +167,9 @@ class Survey < ActiveRecord::Base
   # end  
 
   def student_score(student)
-    
+    Choice.joins(:responses)
+    .where("responses.student_id" => student.id)
+    .collect {|choice| choice.value}
   end
 
   #finds the choice_id for other shits.
