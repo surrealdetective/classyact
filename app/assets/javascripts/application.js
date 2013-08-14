@@ -13,4 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require highcharts.src.js
+//= require highcharts-more.src.js
 //= require_tree .
