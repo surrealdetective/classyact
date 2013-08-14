@@ -8,6 +8,8 @@ Classyact::Application.routes.draw do
     resources :responses, :only => [:new, :create]
   end
 
+  get "surveys/graphs", :to => "surveys#graphs", :as => "graphs"
+
   root :to => "surveys#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
