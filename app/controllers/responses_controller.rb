@@ -11,7 +11,7 @@ class ResponsesController < ApplicationController
     @student = Student.find_by_id(params[:student_id])
     @survey = @student.survey
     offset = @student.responses.count
-    @survey.questions[offset..(offset+11)].each do |question|
+    @survey.questions[offset..(offset+10)].each do |question|
       @student.responses.build(:choice_id => params[question.id.to_s], :survey_id => @survey.id, :question_id => question.id)
     end
 

@@ -168,12 +168,12 @@ class Survey < ActiveRecord::Base
   #Calculates the a student's avg scores given an array of all their responses
   def student_factor_scores(student_response)
     scores = {}
-    scores[:thinking] = student_response[THINKING].inject{|sum, element| sum + element} /8.0
-    scores[:expectations] = student_response[EXPECTATIONS].inject{|sum, element| sum + element}/8.0
-    scores[:interactions] = student_response[INTERACTIONS].inject{|sum, element| sum + element}/8.0
-    scores[:discipline] = student_response[DISCIPLINE].inject{|sum, element| sum + element}/8.0
-    scores[:willing] = student_response[WILLING].inject{|sum, element| sum + element}/8.0
-    scores[:direction] = student_response[DIRECTION].inject{|sum, element| sum + element}/8.0
+    scores[:thinking] = student_response[THINKING].inject{|sum, element| sum + element} / 8.0
+    scores[:expectations] = student_response[EXPECTATIONS].inject{|sum, element| sum + element} / 8.0
+    scores[:interactions] = student_response[INTERACTIONS].inject{|sum, element| sum + element} / 8.0
+    scores[:discipline] = student_response[DISCIPLINE].inject{|sum, element| sum + element} / 8.0
+    scores[:willing] = student_response[WILLING].inject{|sum, element| sum + element} / 8.0
+    scores[:direction] = student_response[DIRECTION].inject{|sum, element| sum + element} / 8.0
     return scores
   end
 
