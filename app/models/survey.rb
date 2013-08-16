@@ -201,13 +201,14 @@ class Survey < ActiveRecord::Base
     lenses = {:import => -3, :improve => -2, :perform => -1}
     factor_selection = {0 => :thinking, 1 => :expectations, 2 => :interactions, 3 => :discipline, 4 => :willing, 5 => :direction}
     scores = {:thinking => 0, :expectations => 0, :interactions => 0, :discipline => 0, :willing => 0, :direction => 0}
-    self.students.each do |student|
+    students = self.students
+    students.each do |student|
       if student.responses.present?
         index_of_lens = self.questions[lenses[lens]].choices.index(Choice.find_by_id(student.responses[lenses[lens]].choice_id))
         scores[factor_selection[index_of_lens]] += 1
       end
     end
-    scores
+    scores.merge(scores){ |key, oldval, newval| (100*oldval/students.count)/3.3333}
   end
 
 end
