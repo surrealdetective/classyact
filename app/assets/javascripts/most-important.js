@@ -1,11 +1,11 @@
-$(function () {
+$(document).ready(function() {
   if($('#most-important').length > 0) {
-    var thinking_count = $('#most-important').data("thinking");
-    var interactions_count = $('#most-important').data("interactions");
-    var expectations_count = $('#most-important').data("expectations");
-    var willing_count = $('#most-important').data("willing");
-    var discipline_count = $('#most-important').data("discipline");
-    var direction_count = $('#most-important').data("direction");
+    var thinking_count = parseFloat($('#most-important').data("thinking"));
+    var interactions_count = parseFloat($('#most-important').data("interactions"));
+    var expectations_count = parseFloat($('#most-important').data("expectations"));
+    var willing_count = parseFloat($('#most-important').data("willing"));
+    var discipline_count = parseFloat($('#most-important').data("discipline"));
+    var direction_count = parseFloat($('#most-important').data("direction"));
     window.chart = new Highcharts.Chart({
                 
         chart: {
