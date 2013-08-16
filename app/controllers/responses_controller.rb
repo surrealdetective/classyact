@@ -3,19 +3,15 @@ class ResponsesController < ApplicationController
   def new
     @student = Student.find_by_id(params[:student_id])
     @survey = @student.survey
-    @questions = @survey.questions.limit(11).offset(params[:offset])
-    # @response = Response.new
-    # raise params.inspect
+    @questions = @survey.questions.limit(11).offset(@student.responses.count)
   end
 
   #this should lead to student show page
   def create
     @student = Student.find_by_id(params[:student_id])
     @survey = @student.survey
-    
-    #you have to pass in the correct questions...
-    #@questions.each do |question|
-    @survey.questions.each do |question|
+    offset = @student.responses.count
+    @survey.questions[offset..(offset+11)].each do |question|
       @student.responses.build(:choice_id => params[question.id.to_s], :survey_id => @survey.id, :question_id => question.id)
     end
 
