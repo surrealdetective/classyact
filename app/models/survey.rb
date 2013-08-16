@@ -158,12 +158,14 @@ class Survey < ActiveRecord::Base
     q.build_overview_choices
   end
 
+  #Collects the values of all student responses (useless for meta questions)
   def student_score(student)
     Choice.joins(:responses)
     .where("responses.student_id" => student.id)
     .collect {|choice| choice.value}
   end
 
+  #Calculates the a student's avg scores given an array of all their responses
   def student_factor_scores(student_response)
     scores = {}
     scores[:thinking] = student_response[THINKING].inject{|sum, element| sum + element} /8.0
@@ -175,11 +177,13 @@ class Survey < ActiveRecord::Base
     return scores
   end
 
+  #Finds the avg scores by factor for a single student, given a student
   def find_student_factor_scores(student)
     @score_totals = self.student_score(student)
     self.student_factor_scores(@score_totals)
   end
 
+  #Finds the avg scores for each class of students
   def find_class_avg_scores
     class_scores = {:thinking => 0, :expectations => 0, :interactions => 0, :discipline => 0, :willing => 0, :direction => 0}
     #add up the sum of all student factor scores
@@ -195,10 +199,11 @@ class Survey < ActiveRecord::Base
     student_count = self.students.count
     class_scores.merge(class_scores){|key, oldval, newval| oldval/student_count.to_f}
   end
-
  
+ #Finds the meta scores for each class of students
   def find_class_meta_selections(lens)
     lenses = {:import => -3, :improve => -2, :perform => -1}
+
     factor_selection = {0 => :thinking, 1 => :expectations, 2 => :interactions, 3 => :discipline, 4 => :willing, 5 => :direction}
     scores = {:thinking => 0, :expectations => 0, :interactions => 0, :discipline => 0, :willing => 0, :direction => 0}
     students = self.students
@@ -209,6 +214,12 @@ class Survey < ActiveRecord::Base
       end
     end
     scores.merge(scores){ |key, oldval, newval| (100*oldval/students.count)/3.3333}
+  end
+
+  #Re-formats meta scores for the graph view
+  def find_class_meta_selections_for_view(lens)
+    all_scores = self.find_class_meta_selections(lens)
+    [all_scores[:thinking], all_scores[:interactions], all_scores[:direction], all_scores[:expectations], all_scores[:discipline], all_scores[:willing]]
   end
 
 end

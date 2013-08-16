@@ -6,8 +6,9 @@
 
 <h1>Your Results</h1>
 
+<%= @meta_important_scores.inspect %>
 
-<div id="most-important" style="width:100%; height:400px;" data-thinking=<%= @thinking %> data-interactions=<%= @interactions %> data-expectations=<%= @expectations %> data-discipline=<%= @discipline %> data-willing=<%= @willing %> data-direction=<%= @direction %>></div>
+<div id="most-important" style="width:100%; height:400px;" data-thinking="<%= @thinking %>" data-interactions="<%= @interactions %>" data-expectations="<%= @expectations %>" data-discipline="<%= @discipline %>" data-willing="<%= @willing %>" data-direction="<%= @direction %>" data-meta_important_scores="<%= @meta_important_scores %>"></div>
 
 <div id="test" style="width:100%; height:400px;" data-thinking=<%= @thinking %> data-interactions=<%= @interactions %> data-expectations=<%= @expectations %> data-discipline=<%= @discipline %> data-willing=<%= @willing %> data-direction=<%= @direction %>></div>
 

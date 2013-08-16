@@ -6,6 +6,8 @@ $(document).ready(function() {
     var willing_count = parseFloat($('#most-important').data("willing"));
     var discipline_count = parseFloat($('#most-important').data("discipline"));
     var direction_count = parseFloat($('#most-important').data("direction"));
+    var meta_important_count = $('#most-important').data("meta_important_scores")
+    // debugger
     window.chart = new Highcharts.Chart({
                 
         chart: {
@@ -54,7 +56,7 @@ $(document).ready(function() {
             pointPlacement: 'on'
         }, {
             name: 'Aggregated Learning Preferences',
-            data: [5, 5, 5, 5, 5, 5],
+            data: meta_important_count,
             pointPlacement: 'on'
         }]
     
