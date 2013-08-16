@@ -2,7 +2,7 @@
 year = (2012..2023).collect{|x| x}
 
 #Seed 10 teachers with 25 students each
-2.times do
+10.times do
   #Make a teacher
   teacher = User.new
   teacher.username = Faker::Name.first_name
@@ -14,7 +14,7 @@ year = (2012..2023).collect{|x| x}
   s.populate_questions
   teacher.save
   #Make students with questions
-  5.times do 
+  25.times do 
     student = s.students.create(:username => Faker::Name.first_name)
     s.questions.each do |question|
       response = student.responses.build(:choice_id => question.choices.sample.id, :survey_id => s.id, :question_id => question.id)
