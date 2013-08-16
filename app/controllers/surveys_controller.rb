@@ -18,12 +18,11 @@ class SurveysController < ApplicationController
 
   def show
     @survey = Survey.find_by_id(params[:id])
-    # @avg_class_scores = @survey.find_class_avg_scores
-    @avg_class_scores = @survey.find_class_avg_scores_for_view
-    # @thinking, @expectations, @interactions = @avg_class_scores[:thinking], @avg_class_scores[:expectations], @avg_class_scores[:interactions]
-    # @discipline, @willing, @direction = @avg_class_scores[:discipline], @avg_class_scores[:willing], @avg_class_scores[:direction] 
-    @meta_important_scores = @survey.find_class_meta_selections_for_view(:import)
-    # @thinking, @expectations, @interactions = @avg_class_scores[:thinking], @avg_class_scores[:expectations], @avg_class_scores[:interactions]
-    # @discipline, @willing, @direction = @avg_class_scores[:discipline], @avg_class_scores[:willing], @avg_class_scores[:direction] 
+    if @survey.students.present?
+      @avg_class_scores = @survey.find_class_avg_scores_for_view
+      @meta_important_scores = @survey.find_class_meta_selections_for_view(:import)
+      @meta_improvement_scores = @survey.find_class_meta_selections_for_view(:improve)
+      @meta_performing_scores = @survey.find_class_meta_selections_for_view(:perform)
+    end
   end
 end
