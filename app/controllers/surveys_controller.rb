@@ -18,5 +18,8 @@ class SurveysController < ApplicationController
 
   def show
     @survey = Survey.find_by_id(params[:id])
+    @avg_class_scores = @survey.find_class_avg_scores
+    @thinking, @expectations, @interactions = @avg_class_scores[:thinking], @avg_class_scores[:expectations], @avg_class_scores[:interactions]
+    @discipline, @willing, @direction = @avg_class_scores[:discipline], @avg_class_scores[:willing], @avg_class_scores[:direction] 
   end
 end

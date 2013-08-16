@@ -193,7 +193,7 @@ class Survey < ActiveRecord::Base
       class_scores[:direction] += scores[:direction] 
     end
     student_count = self.students.count
-    class_scores.values.collect { |class_factor_sum| class_factor_sum / student_count.to_f}
+    class_scores.merge(class_scores){|key, oldval, newval| oldval/student_count.to_f}
   end
 
  
