@@ -1,14 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#create teachers, then crate their students
+#spec: 10 teachers, 25 students
 
-#create the survey
-#change the controller to find or create the first survey
-#give the survey a unique identifier, so it never fails.
+10.times do
+  
+
+end
 
 #avi the teacher makes a survey
 avi = User.new(:username => "avi", :email => "avi@avi.com")
@@ -33,6 +29,25 @@ jennifer = s.students.build(:username => "jennifer")
 alex = s.students.build(:username => "alex")
 s.save
 
+200.times do |i|
+  user = User.new
+
+  user.password = Populator.words(1)
+
+  user.dossiers.build({
+    :tagline            => Faker::Company.bs + Faker::Company.bs + Faker::Company.bs,
+    :phone_number       => Faker::PhoneNumber.phone_number, #10.times.map{rand(9)}.insert(3, "-").insert(7, "-").join,
+    :city               => city,
+    :analytic_skills    => Populator.paragraphs(3),
+    :tidbits            => Populator.paragraphs(3),
+    :course             => courses.sample,
+    :skype              => "#{Populator.words(1)}#{rand(999)}",
+    :gender             => gender,
+    :nyc                => nycs.sample
+  })
+
+  user.save
+end
 
 #students respond to the survey
 
