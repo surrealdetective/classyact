@@ -1,8 +1,6 @@
 <div class="survey">
 <%= form_tag student_responses_path(@student), :method => "POST" %>
-  <% @survey.questions.each do |question| %>
-
-    
+  <% @questions.each do |question| %>
     <div class="question">
       
       <%= question.content %>
@@ -17,5 +15,5 @@
     </div>
 
 <% end %>
-  <%= submit_tag "Submit" %>
+  <%= submit_tag "Next" %>
 </div>

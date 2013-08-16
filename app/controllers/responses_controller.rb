@@ -3,7 +3,8 @@ class ResponsesController < ApplicationController
   def new
     @student = Student.find_by_id(params[:student_id])
     @survey = @student.survey
-    @response = Response.new
+    @questions = @survey.questions.limit(11).offset(params[:offset])
+    # @response = Response.new
     # raise params.inspect
   end
 
@@ -11,11 +12,19 @@ class ResponsesController < ApplicationController
   def create
     @student = Student.find_by_id(params[:student_id])
     @survey = @student.survey
+    
+    #you have to pass in the correct questions...
+    #@questions.each do |question|
     @survey.questions.each do |question|
       @student.responses.build(:choice_id => params[question.id.to_s], :survey_id => @survey.id, :question_id => question.id)
     end
+
     @student.save
-    redirect_to survey_student_path(@student.survey, @student)
+    if @student.responses.count < 69
+      redirect_to new_student_response_path(:offset => params[:offset])
+    else
+      redirect_to survey_student_path(@student.survey, @student)
+    end
   end
 
 end
