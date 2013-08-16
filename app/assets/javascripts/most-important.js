@@ -1,11 +1,6 @@
 $(document).ready(function() {
   if($('#most-important').length > 0) {
-    var thinking_count = parseFloat($('#most-important').data("thinking"));
-    var interactions_count = parseFloat($('#most-important').data("interactions"));
-    var expectations_count = parseFloat($('#most-important').data("expectations"));
-    var willing_count = parseFloat($('#most-important').data("willing"));
-    var discipline_count = parseFloat($('#most-important').data("discipline"));
-    var direction_count = parseFloat($('#most-important').data("direction"));
+    var avg_class_scores = $('#most-important').data("avg_class_scores")
     var meta_important_count = $('#most-important').data("meta_important_scores")
     // debugger
     window.chart = new Highcharts.Chart({
@@ -52,7 +47,7 @@ $(document).ready(function() {
         
         series: [{
             name: 'Average Scores by Factor',
-            data: [thinking_count, interactions_count, direction_count, expectations_count, discipline_count, willing_count],
+            data: avg_class_scores,
             pointPlacement: 'on'
         }, {
             name: 'Aggregated Learning Preferences',

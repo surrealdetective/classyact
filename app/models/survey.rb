@@ -199,6 +199,11 @@ class Survey < ActiveRecord::Base
     student_count = self.students.count
     class_scores.merge(class_scores){|key, oldval, newval| oldval/student_count.to_f}
   end
+
+  def find_class_avg_scores_for_view
+    all_scores = self.find_class_avg_scores
+    [all_scores[:thinking], all_scores[:interactions], all_scores[:direction], all_scores[:expectations], all_scores[:discipline], all_scores[:willing]]
+  end
  
  #Finds the meta scores for each class of students
   def find_class_meta_selections(lens)
