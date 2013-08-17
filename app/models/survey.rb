@@ -211,6 +211,19 @@ class Survey < ActiveRecord::Base
     avg_subfactors
   end
 
+  def find_class_sub_scores(factor)
+    class_scores = {:first => 0, :second => 0, :third => 0, :fourth => 0}
+    self.students.each do |student|
+      scores = self.find_factor_sub_scores(student, factor)
+      class_scores[:first] += scores[:first]
+      class_scores[:second] += scores[:second]
+      class_scores[:third] += scores[:third] 
+      class_scores[:fourth] += scores[:fourth]
+    end
+    student_count = self.students.count.to_f
+    class_scores.merge(class_scores){|key, oldval, newval| oldval/student_count}
+  end
+
   #Finds the avg scores for each class of students
   def find_class_avg_scores
     class_scores = {:thinking => 0, :expectations => 0, :interactions => 0, :discipline => 0, :willing => 0, :direction => 0}
