@@ -1,5 +1,7 @@
 Classyact::Application.routes.draw do
 
+  devise_for :users
+
   resources :surveys do 
     resources :students, :only => [:new, :show, :create, :index]
   end
