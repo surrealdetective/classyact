@@ -183,6 +183,34 @@ class Survey < ActiveRecord::Base
     self.student_factor_scores(@score_totals)
   end
 
+  def to_const(factor)
+    case factor
+    when :thinking
+      THINKING
+    when :expectations
+      EXPECTATIONS
+    when :interactions
+      INTERACTIONS
+    when :discipline
+      DISCIPLINE
+    when :willing
+      WILLING
+    when :direction
+      DIRECTION
+    end
+  end
+
+  #Finds sub factor scores per factor
+  def find_factor_sub_scores(student, factor)
+    scores = self.student_score(student)
+    avg_subfactors = {}
+    avg_subfactors[:first] = scores[self.to_const(factor)][0..1].inject{ |sum, element| sum + element} / 2.0
+    avg_subfactors[:second] = scores[self.to_const(factor)][2..3].inject{ |sum, element| sum + element} / 2.0
+    avg_subfactors[:third] = scores[self.to_const(factor)][4..5].inject{ |sum, element| sum + element} / 2.0
+    avg_subfactors[:fourth] = scores[self.to_const(factor)][6..7].inject{ |sum, element| sum + element} / 2.0
+    avg_subfactors
+  end
+
   #Finds the avg scores for each class of students
   def find_class_avg_scores
     class_scores = {:thinking => 0, :expectations => 0, :interactions => 0, :discipline => 0, :willing => 0, :direction => 0}
