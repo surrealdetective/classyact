@@ -7,6 +7,7 @@ year = (2012..2023).collect{|x| x}
   teacher = User.new
   teacher.username = Faker::Name.first_name
   teacher.email = Faker::Internet.email
+  teacher.password = "qwerty1234"
   #Make a survey
   s = teacher.surveys.new
   s.subject = "Rails"
