@@ -1,5 +1,7 @@
 Classyact::Application.routes.draw do
 
+  devise_for :students
+
   devise_for :users
 
   resources :surveys do 
