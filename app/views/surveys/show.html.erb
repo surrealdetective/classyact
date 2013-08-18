@@ -1,3 +1,9 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "test.js" %>
+<% end %>
+
+
+
 <nav>
   <ul>
     <li><%= link_to "List of Students", survey_students_path(@survey) %></li>
@@ -8,4 +14,13 @@
 
 <% if @survey.students.present? %>
   <%= render "surveys/factor_graphs", :avg_class_scores => @avg_class_scores, :meta_important_scores => @meta_important_scores, :meta_improvement_scores => @meta_improvement_scores, :meta_performing_scores => @meta_performing_scores %>
+
+  <div class="factor-graphs">
+    <div id="thinking-" class="factor-graph" data-avg_class_scores="<%= @avg_class_scores %>" data-meta_important_scores="<%= @meta_important_scores %>"></div>
+  </div>
+
+  <div class="factor-graphs">
+    <div id="test" class="factor-graph" data-avg_class_scores="<%= @avg_class_scores %>" data-meta_performing_scores="<%= @meta_performing_scores %>"></div>
+  </div>
 <% end %>
+

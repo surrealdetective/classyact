@@ -1,18 +1,18 @@
 $(document).ready(function() {
-  if($('#test').length > 0) {
-    var avg_class_scores = $('#best-performing').data("avg_class_scores")
-    var meta_performing_count = $('#best-performing').data("meta_performing_scores")
+  if($('#thinking-import-sub').length > 0) {
+    var avg_class_scores = $('#thinking-import-sub').data("avg_class_scores")
+    var meta_important_count = $('#thinking-import-sub').data("meta_important_scores")
     // debugger
     window.chart = new Highcharts.Chart({
                 
         chart: {
-            renderTo: 'test',
+            renderTo: 'thinking-import-sub',
             polar: true,
             type: 'line'
         },
         
         title: {
-            text: 'Best Performing'
+            text: 'Most Important'
         },
         
         pane: {
@@ -33,8 +33,7 @@ $(document).ready(function() {
         },
         
         tooltip: {
-            shared: true,
-            valuePrefix: '$'
+            shared: true
         },
         
         legend: {
@@ -47,10 +46,10 @@ $(document).ready(function() {
         series: [{
             name: 'Average Scores by Factor',
             data: avg_class_scores,
-            pointPlacement: 'on'
+            pointPlacement: 'on',
         }, {
             name: 'Aggregated Learning Preferences',
-            data: meta_performing_count,
+            data: meta_important_count,
             pointPlacement: 'on'
         }]
     

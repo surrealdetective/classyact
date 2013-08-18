@@ -12,8 +12,7 @@ $(document).ready(function() {
         },
         
         title: {
-            text: 'Most Important',
-            x: -115
+            text: 'Most Important'
         },
         
         pane: {
@@ -34,12 +33,11 @@ $(document).ready(function() {
         },
         
         tooltip: {
-            shared: true,
-            valuePrefix: '$'
+            shared: true
         },
         
         legend: {
-            align: 'right',
+            align: 'bottom',
             verticalAlign: 'top',
             y: 100,
             layout: 'vertical'
@@ -48,7 +46,7 @@ $(document).ready(function() {
         series: [{
             name: 'Average Scores by Factor',
             data: avg_class_scores,
-            pointPlacement: 'on'
+            pointPlacement: 'on',
         }, {
             name: 'Aggregated Learning Preferences',
             data: meta_important_count,

@@ -12,8 +12,7 @@ $(document).ready(function() {
         },
         
         title: {
-            text: 'Needs Improvement',
-            x: -115
+            text: 'Needs Improvement'
         },
         
         pane: {
@@ -39,7 +38,7 @@ $(document).ready(function() {
         },
         
         legend: {
-            align: 'right',
+            align: 'bottom',
             verticalAlign: 'top',
             y: 100,
             layout: 'vertical'

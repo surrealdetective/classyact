@@ -12,8 +12,7 @@ $(document).ready(function() {
         },
         
         title: {
-            text: 'Best Performing',
-            x: -115
+            text: 'Best Performing'
         },
         
         pane: {
@@ -39,7 +38,7 @@ $(document).ready(function() {
         },
         
         legend: {
-            align: 'right',
+            align: 'bottom',
             verticalAlign: 'top',
             y: 100,
             layout: 'vertical'
