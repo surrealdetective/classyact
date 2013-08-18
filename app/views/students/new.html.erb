@@ -1,2 +1,15 @@
-<h1>Students#new</h1>
-<p>Find me in app/views/students/new.html.erb</p>
+<h1>Add Students to your Survey</h1>
+
+<%= form_tag new_survey_student_path %>
+
+  <fieldset>
+    <%= label_tag 'class_size', "Class Size" %>
+    <%= number_field_tag "class_size", 25 %>
+  </fieldset>
+
+  <fieldset>
+    <%= label_tag 'survey_passcode', "Survey Passcode" %>
+    <%= password_field_tag "survey_passcode", nil, maxlength: 16 %>
+  </fieldset>
+
+<%= submit_tag "Submit" %>
