@@ -1,18 +1,18 @@
 $(document).ready(function() {
-  if($('#thinking-import-sub').length > 0) {
-    var avg_class_scores = $('#thinking-import-sub').data("avg_class_scores")
-    var meta_important_count = $('#thinking-import-sub').data("meta_important_scores")
-    // debugger
+  if($('#thinking-perform-sub').length > 0) {
+    var avg_sub_scores = $('#thinking-perform-sub').data("avg_sub_scores")
+    var sub_thinking_perform = $('#thinking-perform-sub').data("sub_thinking_perform")
+    debugger
     window.chart = new Highcharts.Chart({
                 
         chart: {
-            renderTo: 'thinking-import-sub',
+            renderTo: 'thinking-perform-sub',
             polar: true,
             type: 'line'
         },
         
         title: {
-            text: 'Most Important'
+            text: 'Thinking Factor: Best Performing Sub-Factors'
         },
         
         pane: {
@@ -20,8 +20,7 @@ $(document).ready(function() {
         },
         
         xAxis: {
-            categories: ['Thinking', 'Interactions', 'Self-Direction', 'Self-Expectations', 
-                    'Self-Discipine', 'Willing'],
+            categories: ['Necessary Skills', 'Talent Leverage', 'Life Decisions', 'Value-add Skills'],
             tickmarkPlacement: 'on',
             lineWidth: 0
         },
@@ -33,7 +32,8 @@ $(document).ready(function() {
         },
         
         tooltip: {
-            shared: true
+            shared: true,
+            valuePrefix: '$'
         },
         
         legend: {
@@ -45,11 +45,11 @@ $(document).ready(function() {
         
         series: [{
             name: 'Average Scores by Factor',
-            data: avg_class_scores,
-            pointPlacement: 'on',
+            data: avg_sub_scores,
+            pointPlacement: 'on'
         }, {
             name: 'Aggregated Learning Preferences',
-            data: meta_important_count,
+            data: sub_thinking_perform, 
             pointPlacement: 'on'
         }]
     

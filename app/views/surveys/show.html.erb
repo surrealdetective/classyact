@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <%= javascript_include_tag "test.js" %>
+  <%= javascript_include_tag "best-performing-sub-factor.js" %>
 <% end %>
 
 
@@ -16,11 +16,8 @@
   <%= render "surveys/factor_graphs", :avg_class_scores => @avg_class_scores, :meta_important_scores => @meta_important_scores, :meta_improvement_scores => @meta_improvement_scores, :meta_performing_scores => @meta_performing_scores %>
 
   <div class="factor-graphs">
-    <div id="thinking-" class="factor-graph" data-avg_class_scores="<%= @avg_class_scores %>" data-meta_important_scores="<%= @meta_important_scores %>"></div>
-  </div>
-
-  <div class="factor-graphs">
-    <div id="test" class="factor-graph" data-avg_class_scores="<%= @avg_class_scores %>" data-meta_performing_scores="<%= @meta_performing_scores %>"></div>
+    <div id="thinking-perform-sub" class="factor-graph" data-avg_sub_scores="<%= @avg_sub_scores %>" data-sub_thinking_perform="<%= @sub_thinking_perform_scores%>">
+    </div>
   </div>
 <% end %>
 

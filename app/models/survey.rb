@@ -224,6 +224,11 @@ class Survey < ActiveRecord::Base
     class_scores.merge(class_scores){|key, oldval, newval| oldval/student_count}
   end
 
+  def find_class_sub_scores_for_view(factor)
+    sub_scores = self.find_class_sub_scores(factor)
+    [sub_scores[:first], sub_scores[:second], sub_scores[:third], sub_scores[:fourth]]
+  end
+
   #there will be a possible of 8 choices
   def find_class_meta_sub_scores(factor, lens)
     #Find the index of the correct question from student.responses == survey.questions
@@ -241,7 +246,12 @@ class Survey < ActiveRecord::Base
         scores[factor_selection[index_of_lens]] += 1
       end
     end
-    scores#.merge(scores){ |key, oldval, newval| (100*oldval/students.count)/5.0}
+    scores.merge(scores){ |key, oldval, newval| (100*oldval/students.count)/5.0}
+  end
+
+  def find_class_meta_sub_scores_for_view(factor, lens)
+    sub_scores = self.find_class_meta_sub_scores(factor, lens)
+    [sub_scores[:first], sub_scores[:second], sub_scores[:third], sub_scores[:fourth]]
   end
 
   #Finds the avg scores for each class of students

@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  if($('#test').length > 0) {
     var avg_class_scores = $('#best-performing').data("avg_class_scores")
     var meta_performing_count = $('#best-performing').data("meta_performing_scores")
     // debugger
@@ -55,5 +54,4 @@ $(document).ready(function() {
         }]
     
     });
-  }
 });

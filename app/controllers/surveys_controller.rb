@@ -23,6 +23,9 @@ class SurveysController < ApplicationController
       @meta_important_scores = @survey.find_class_meta_selections_for_view(:import)
       @meta_improvement_scores = @survey.find_class_meta_selections_for_view(:improve)
       @meta_performing_scores = @survey.find_class_meta_selections_for_view(:perform)
+      #sub graphs
+      @avg_sub_scores = @survey.find_class_sub_scores_for_view(:thinking)
+      @sub_thinking_perform_scores = @survey.find_class_meta_sub_scores_for_view(:thinking, :perform)
     end
   end
 end
