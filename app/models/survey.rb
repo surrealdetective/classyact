@@ -200,6 +200,23 @@ class Survey < ActiveRecord::Base
     end
   end
 
+  def sub_factors(factor)
+    case factor
+    when :thinking
+      ['Necessary Skills', 'Talent Leverage', 'Life Decisions', 'Value-add Skills']
+    when :expectations
+      ['Observing', 'Progressing', 'Comprehensiveness', 'Durability']
+    when :interactions
+      ['Outside-inside', 'Inside-inside', 'Inside-outside', 'Outside-outside']
+    when :discipline
+      ['Planned', 'Scaffolded', 'Focused', 'Scoped']
+    when :willing
+      ['Timely', 'Substantive', 'Possibility to Act', 'Action']
+    when :direction
+      ['Comfort', 'Curiosity', 'Activity', 'Order']
+    end
+  end
+
   #Finds sub factor scores per factor
   def find_factor_sub_scores(student, factor)
     scores = self.student_score(student)

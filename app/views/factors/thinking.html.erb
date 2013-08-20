@@ -1,0 +1,22 @@
+<%= content_for :head do %>
+  <%= javascript_include_tag "import.js" %>
+  <%= javascript_include_tag "improve.js" %>
+  <%= javascript_include_tag "perform.js" %>
+<% end %>
+
+<%= controller.action_name %>
+
+<div class="factor-graphs">
+  <div id="import" class="factor-graph" data-sub_avg_factor="<%= @sub_avg_factor %>" data-import="<%= @import %>" data-sub_factors="<%= @survey.sub_factors(controller.action_name.to_sym) %>">
+  </div>
+</div>
+
+<div class="factor-graphs">
+  <div id="improve" class="factor-graph" data-sub_avg_factor="<%= @sub_avg_factor %>" data-improve="<%= @improve %>" data-sub_factors="<%= @survey.sub_factors(controller.action_name.to_sym) %>">
+  </div>
+</div>
+
+<div class="factor-graphs">
+  <div id="perform" class="factor-graph" data-sub_avg_factor="<%= @sub_avg_factor %>" data-perform="<%= @perform %>" data-sub_factors="<%= @survey.sub_factors(controller.action_name.to_sym) %>">
+  </div>
+</div>

@@ -1,0 +1,55 @@
+$(document).ready(function() {
+  var sub_avg_factor           =  $("#improve").data("sub_avg_factor");
+  var sub_learning_preferences =  $("#improve").data("improve");
+  var sub_factors              =  $("#improve").data("sub_factors");
+  window.chart = new Highcharts.Chart({
+                
+    chart: {
+      renderTo: 'improve', //improve
+      polar: true,
+      type: 'line'
+    },
+      
+    title: {
+      text: 'Needs Improvement' //sub_title
+    },
+    
+    pane: {
+      size: '80%'
+    },
+    
+    xAxis: {
+      categories: sub_factors,
+      tickmarkPlacement: 'on',
+      lineWidth: 0
+    },
+        
+    yAxis: {
+      gridLineInterpolation: 'polygon',
+      lineWidth: 0,
+      min: 0
+    },
+      
+    tooltip: {
+      shared: true,
+      valuePrefix: '$'
+    },
+    
+    legend: {
+      align: 'bottom',
+      verticalAlign: 'top',
+      y: 100,
+      layout: 'vertical'
+    },
+      
+    series: [{
+      name: 'Average Scores by Factor',
+      data: sub_avg_factor,
+      pointPlacement: 'on'
+    }, {
+      name: 'Aggregated Learning Preferences',
+      data: sub_learning_preferences, 
+      pointPlacement: 'on'
+    }]
+  });
+});

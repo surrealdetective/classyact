@@ -1,0 +1,10 @@
+<%= content_for :head do %>
+  <%= javascript_include_tag "sub_lens.js" %>
+<% end %>
+
+<%= controller.action_name %>
+
+<div class="factor-graphs">
+  <div id="import" class="factor-graph" data-sub_avg_factor="<%= @sub_avg_factor %>" data-import="<%= @import %>" data-sub_factors="<%= @survey.sub_factors(controller.action_name.to_sym) %>">
+  </div>
+</div>

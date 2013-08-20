@@ -4,6 +4,14 @@ Classyact::Application.routes.draw do
     resources :students, :only => [:new, :show, :create, :index]
   end
 
+  #Six Factors for Deep Dive Analysis
+  get 'surveys/:survey_id/factors/thinking',      :to => "factors#thinking",      :as => "thinking_factor"
+  get 'surveys/:survey_id/factors/expectations',  :to => "factors#expectations",  :as => "expectations_factor"
+  get 'surveys/:survey_id/factors/interactions',  :to => "factors#interactions",  :as => "interactions_factor"
+  get 'surveys/:survey_id/factors/direction',     :to => "factors#direction",     :as => "direction_factor"
+  get 'surveys/:survey_id/factors/discipline',    :to => "factors#discipline",    :as => "discipline_factor"
+  get 'surveys/:survey_id/factors/willing',       :to => "factors#willing",       :as => "willing_factor"
+
   resources :students, :only => [] do
     resources :responses, :only => [:new, :create]
   end
