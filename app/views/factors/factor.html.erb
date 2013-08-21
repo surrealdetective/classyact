@@ -1,0 +1,7 @@
+<!-- Includes Javascript for Graphs -->
+<%= render 'factors/javascripts' %>
+
+<%= controller.action_name %>
+
+<!-- Renders Graphs -->
+<%= render "factors/sub_factors", :survey => @survey, :sub_avg_factor => @sub_avg_factor, :import => @import, :improve => @improve, :perform => @perform %>
