@@ -1,2 +1,13 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<% if @surveys.present? %>
+  <h1>Your Surveys</h1>
+
+  <div id="surveys">
+    <ul>
+    <% @surveys.each do |survey| %>
+      <li><%= survey.subject %> <%= survey.semester %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= link_to "New Survey", new_user_survey_path %>

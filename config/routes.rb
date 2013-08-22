@@ -1,24 +1,24 @@
 Classyact::Application.routes.draw do
 
-  resources :surveys do 
-    resources :students, :only => [:new, :show, :create, :index]
-  end
+  resources :surveys# do 
+  #   resources :students, :only => [:show, :create, :index]
+  # end
 
-  resources :users, :only => [:show, :new, :create]
+  resources :users, :only => [:show, :new, :create] do
+    resources :surveys, :only => [:show, :new, :create]
+  end
 
   #Six Factors for Deep Dive Analysis
   get 'surveys/:survey_id/factors/:factor', :to => "factors#factor", :as => "factor"
 
-  resources :students, :only => [] do
-    resources :responses, :only => [:new, :create]
-  end
-
-  get "surveys/graphs", :to => "surveys#graphs", :as => "graphs"
+  # resources :students, :only => [] do
+  #   resources :responses, :only => [:new, :create]
+  # end
 
   get "/login", :to => "sessions#new", :as => 'login'
   get '/logout', :to => "sessions#destroy", :as => 'logout'
   post '/login', :to => "sessions#create", :as => 'login'
-
+  get '/signup', :to => 'users#new', :as => 'signup'
 
   root :to => "sessions#new"
   # The priority is based upon order of creation:

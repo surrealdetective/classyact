@@ -2,17 +2,9 @@
   <%= javascript_include_tag "best-performing-sub-factor.js" %>
 <% end %>
 
-
-
-<nav>
-  <ul>
-    <li><%= link_to "List of Students", survey_students_path(@survey) %></li>
-  </ul>
-</nav>
-
 <h1>Your Results</h1>
 
-<% if @survey.students.present? %>
+<% if @survey && @survey.students.present? %>
   <%= render "surveys/factor_graphs", :avg_class_scores => @avg_class_scores, :meta_important_scores => @meta_important_scores, :meta_improvement_scores => @meta_improvement_scores, :meta_performing_scores => @meta_performing_scores %>
 
   <div class="factor-graphs">

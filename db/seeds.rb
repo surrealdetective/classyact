@@ -5,7 +5,8 @@ year = (2012..2023).collect{|x| x}
 10.times do
   #Make a teacher
   teacher = User.new
-  teacher.username = Faker::Name.first_name
+  #teacher.username = Faker::Name.first_name
+  teacher.password = 'password123'
   teacher.email = Faker::Internet.email
   #Make a survey
   s = teacher.surveys.new
