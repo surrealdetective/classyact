@@ -1,12 +1,15 @@
 <h1>What subject and semester are you surveying?</h1>
 
-<%= form_for @survey do |f| %>
-  
-  <%= f.label :subject %>:
-  <%= f.text_field :subject %><br />
-
-  <%= f.label :semester %>:
-  <%= f.text_field :semester %><br />
-
-  <%= f.submit %>
+<%= form_tag user_surveys_path(@user) do %>
+  <fieldset>
+    <div>
+      <%= label_tag "[survey]subject", "Subject:" %>
+      <%= text_field_tag '[survey]subject' %>
+    </div>
+    <div>
+      <%= label_tag '[survey]semester', 'Semester:' %>
+      <%= text_field_tag '[survey]semester' %>
+    </div>
+  </fieldset>
+  <%= submit_tag "Submit" %>
 <% end %>

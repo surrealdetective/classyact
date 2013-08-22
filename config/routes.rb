@@ -1,6 +1,6 @@
 Classyact::Application.routes.draw do
 
-  resources :surveys# do 
+  # resources :surveys# do 
   #   resources :students, :only => [:show, :create, :index]
   # end
 
@@ -16,8 +16,8 @@ Classyact::Application.routes.draw do
   # end
 
   get "/login", :to => "sessions#new", :as => 'login'
-  get '/logout', :to => "sessions#destroy", :as => 'logout'
   post '/login', :to => "sessions#create", :as => 'login'
+  get '/logout', :to => "sessions#destroy", :as => 'logout'
   get '/signup', :to => 'users#new', :as => 'signup'
 
   root :to => "sessions#new"
