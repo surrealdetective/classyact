@@ -4,6 +4,8 @@ Classyact::Application.routes.draw do
     resources :students, :only => [:new, :show, :create, :index]
   end
 
+  resources :users, :only => [:show, :new, :create]
+
   #Six Factors for Deep Dive Analysis
   get 'surveys/:survey_id/factors/:factor', :to => "factors#factor", :as => "factor"
 
