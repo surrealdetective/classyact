@@ -13,7 +13,12 @@ Classyact::Application.routes.draw do
 
   get "surveys/graphs", :to => "surveys#graphs", :as => "graphs"
 
-  root :to => "surveys#index"
+  get "/login", :to => "sessions#new", :as => 'login'
+  get '/logout', :to => "sessions#destroy", :as => 'logout'
+  post '/login', :to => "sessions#create", :as => 'login'
+
+
+  root :to => "sessions#new"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

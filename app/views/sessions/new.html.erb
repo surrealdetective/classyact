@@ -1,0 +1,22 @@
+Welcome to Classy Act
+
+<%= form_tag login_path do %>
+
+  <div class="welcome-h1">
+
+    <div class="field">
+      <%= label_tag "E-mail" %>
+      <%= text_field_tag "user[email]" %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+    </div>
+
+    <div class="actions">
+      <%= submit_tag "Login", :class => "btn" %>
+    </div>
+
+  </div>
+<% end %>

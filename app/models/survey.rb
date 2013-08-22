@@ -217,6 +217,10 @@ class Survey < ActiveRecord::Base
     end
   end
 
+  def factors
+    ["thinking", "interactions", "willing", "discipline", "direction", "expectations"]
+  end
+
   #Finds sub factor scores per factor
   def find_factor_sub_scores(student, factor)
     scores = self.student_score(student)
