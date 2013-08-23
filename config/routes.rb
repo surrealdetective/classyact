@@ -4,6 +4,10 @@ Classyact::Application.routes.draw do
   #   resources :students, :only => [:show, :create, :index]
   # end
 
+  get '/surveys/:id', :to => 'surveys#show', :as => 's_survey'
+  get '/surveys/:id/responses/new', :to =>'responses#new', :as => 'response'
+  post '/surveys/:id/responses', :to => 'responses#create', :as => 'responses'
+
   resources :users, :only => [:show, :new, :create] do
     resources :surveys, :only => [:show, :new, :create]
   end

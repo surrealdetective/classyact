@@ -15,8 +15,9 @@ class SurveysController < ApplicationController
   end
 
   def show
-    @user = params[:user_id]
+    # @user = params[:user_id]
     @survey = Survey.find_by_id(params[:id])
+    @factors = @survey.factors
     if @survey && @survey.students.present?
       @avg_class_scores = @survey.find_class_avg_scores_for_view
       @meta_important_scores = @survey.find_class_meta_selections_for_view(:import)
