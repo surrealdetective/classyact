@@ -1,3 +1,13 @@
+#Seats
+Don't worry about seats yet.
+For now, create the current_user pattern
+for surveys only, in the responses controller.
+
+For this, change the form so that surveys have a password and seats too.
+
+#surveys#new
+
+
 OBSERVATION
 #Graph 1: Graph 1 - Most Important
 Hexagon, first of averages

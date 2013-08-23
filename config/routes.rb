@@ -5,8 +5,14 @@ Classyact::Application.routes.draw do
   # end
 
   get '/surveys/:id', :to => 'surveys#show', :as => 's_survey'
-  get '/surveys/:id/responses/new', :to =>'responses#new', :as => 'response'
-  post '/surveys/:id/responses', :to => 'responses#create', :as => 'responses'
+
+  resources :students, :only => [:new, :create] do
+    resources :responses, :only => [:new, :create]
+  end
+
+  resources :surveys, :only => [] do
+    resources :students, :only => [:show, :index]
+  end
 
   resources :users, :only => [:show, :new, :create] do
     resources :surveys, :only => [:show, :new, :create]
@@ -23,6 +29,7 @@ Classyact::Application.routes.draw do
   post '/login', :to => "sessions#create", :as => 'login'
   get '/logout', :to => "sessions#destroy", :as => 'logout'
   get '/signup', :to => 'users#new', :as => 'signup'
+  get '/welcome', :to => 'sessions#welcome', :as => 'welcome'
 
   root :to => "sessions#new"
   # The priority is based upon order of creation:

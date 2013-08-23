@@ -1,11 +1,13 @@
 class Survey < ActiveRecord::Base
-  attr_accessible :semester, :subject, :user_id
+  attr_accessible :semester, :subject, :user_id, :password, :size
 
   belongs_to :user
   has_many :students
   has_many :questions
   has_many :choices, :through => :questions
   has_many :responses, :through => :choices
+
+  has_secure_password
 
   #Current Ranges for Questions by ID
   # THINKING = 1..8
@@ -317,6 +319,22 @@ class Survey < ActiveRecord::Base
   def find_class_meta_selections_for_view(lens)
     all_scores = self.find_class_meta_selections(lens)
     [all_scores[:thinking], all_scores[:interactions], all_scores[:direction], all_scores[:expectations], all_scores[:discipline], all_scores[:willing]]
+  end
+
+  #Authenticate for Students
+  def self.authenticate(password)
+    if self.password_hash == Bcrypt::Engine.hash_secret(password, user.password_salt)
+      true
+    else
+      nil #wrong
+    end
+  end
+  
+  def encrypt_password
+    if password.present?
+      self.password_salt = BCrypt::Engine.generate_salt
+      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
+    end
   end
 
 end

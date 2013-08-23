@@ -10,6 +10,17 @@
       <%= label_tag '[survey]semester', 'Semester:' %>
       <%= text_field_tag '[survey]semester' %>
     </div>
+    <div>
+      <%= label_tag '[survey]size', 'Number of Students:' %>
+      <%= number_field_tag '[survey]size' %>
+    </div>
   </fieldset>
-  <%= submit_tag "Submit" %>
+  <fieldset>
+    <div>
+    <%= label_tag '[survey]password', 'Survey Passcode:' %>
+    <%= password_field_tag '[survey]password' %>
+    <%= submit_tag "Submit" %>
+    </div>
+  </fieldset>
+  
 <% end %>
