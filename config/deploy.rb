@@ -1,6 +1,6 @@
 require 'bundler/capistrano'
 
-set :application, "classyact"
+set :application, "classyact002"
 set :repository,  "git@github.com:surrealdetective/classyact.git"
 
 set :user, 'deploy'
