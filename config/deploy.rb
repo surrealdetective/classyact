@@ -18,7 +18,7 @@ role :web, "192.241.143.57"                          # Your HTTP server, Apache/
 role :app, "192.241.143.57"                          # This may be the same as your `Web` server
 
 # If you want a shared database across deploys, uncomment this:
-# before 'deploy:assets:precompile', 'deploy:symlink_config'
+before 'deploy:assets:precompile', 'deploy:symlink_config'
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
@@ -34,7 +34,7 @@ namespace :deploy do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
  # If you want to create a sym_link to your shared database, uncomment this:
- #  task :symlink_config, :roles => :app do 
- #   run "ln -nfs #{shared_path}/production.sqlite3 #{current_release}/db/production.sqlite3"
- # end
+  task :symlink_config, :roles => :app do 
+   run "ln -nfs #{shared_path}/production.sqlite3 #{current_release}/db/production.sqlite3"
+ end
 end
