@@ -1,9 +1,5 @@
 Classyact::Application.routes.draw do
 
-  # resources :surveys# do 
-  #   resources :students, :only => [:show, :create, :index]
-  # end
-
   get '/surveys/:id', :to => 'surveys#show', :as => 's_survey'
 
   resources :students, :only => [:new, :create] do
@@ -21,9 +17,6 @@ Classyact::Application.routes.draw do
   #Six Factors for Deep Dive Analysis
   get 'surveys/:survey_id/factors/:factor', :to => "factors#factor", :as => "factor"
 
-  # resources :students, :only => [] do
-  #   resources :responses, :only => [:new, :create]
-  # end
 
   get "/login", :to => "sessions#new", :as => 'login'
   post '/login', :to => "sessions#create", :as => 'login'

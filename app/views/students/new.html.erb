@@ -1,11 +1,20 @@
-<div class="span6">
+<div class="float-left span6">
+  <h1>ClassyAct</h1>
+
+  <h2>Help a teacher.</h2>
+  <h3><em>Only students know what they learn</em></h3>
+
+  <div style="width:300px;"><%= image_tag "mag_glass.png" %></div>
+</div>
+
+<div class="span6" style="float:left; padding-top: 200px;">
   <h2>Student Login</h2>
   <%= form_tag students_path do %> 
 
     <div class="welcome-h1">
 
       <div class="field">
-        <%= label_tag "student[survey_id]", "Select Your Class" %>
+        <%= label_tag "student[survey_id]", "Input Your Class Id" %>
         <%= number_field_tag "student[survey_id]" %>
       </div>
 
