@@ -51,3 +51,22 @@
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
 }
+// Session#new
+
+#value-prop {
+  // float: left;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 400px;
+  border-right: 3px solid #34495E;
+  background-color: #1ABC9C;
+  padding: 150px 20px 0;
+}
+
+#login {
+  text-align: right;
+  width: 720px;
+  padding-top: 100px;
+
+}
