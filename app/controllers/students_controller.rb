@@ -8,7 +8,7 @@ class StudentsController < ApplicationController
   #people who sign up can access this
   def create
     @survey = Survey.find_by_id(params[:student][:survey_id])
-    if @survey.authenticate(params[:password])
+    if @survey && @survey.authenticate(params[:password])
       @student = Student.create(params[:student])
       redirect_to new_student_response_path(@student)
     else
