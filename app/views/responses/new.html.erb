@@ -1,19 +1,20 @@
 <div class="survey">
-<%= form_tag student_responses_path(@student), :method => "POST" %>
-  <% @questions.each do |question| %>
-    <div class="question">
-      
-      <%= question.content %>
-      
-      <% question.choices.each do |choice| %>
-        <div class="choice">
-          <%= label_tag choice.content %>
-          <%= radio_button_tag question.id, choice.id %>
+  <%= form_tag student_responses_path(@student), :method => "POST" %>
+    <% @questions.each_with_index do |question, index| %>
+      <div class="question">
+        <div class="q-content">      
+          <%= "#{index+1}. #{question.content}" %>
         </div>
-      <% end %>
+        <% question.choices.each do |choice| %>
+          <div class="choice">
+            <%= label_tag "#{question.id}[#{choice.id}]", choice.content, :class => "#{choice.content}" %>
+            <%= radio_button_tag question.id, choice.id %>
+          </div>
+        <% end %>
+      
+      </div>
+      
+    <% end %>
+    <%= submit_tag "Next" %>
     
-    </div>
-
-  <% end %>
-  <%= submit_tag "Next" %>
 </div>
