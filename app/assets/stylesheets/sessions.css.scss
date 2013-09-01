@@ -1,3 +1,53 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// #welcome-wrapper {
+//   position: relative;
+//   background-color: red;
+//   width: 100%;
+//   height: auto;
+//   top: 0;
+//   bottom: 0;
+// }
+// #welcome-header {
+//   text-align: center;
+//   padding-top: 40px;
+// }
+
+#welcome {
+  width: 600px;
+  height: 100px;
+  margin: -105px -300px;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+}
+
+#welcome div {
+  padding-top: 15px;
+  padding-bottom: 25px;
+  width: 600px;
+}
+
+#welcome a {
+  margin: 0 40px;
+  display: inline;
+  padding: 10px 20px;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  height: 0;
+  line-height: 0;
+}
+
+* {
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+}

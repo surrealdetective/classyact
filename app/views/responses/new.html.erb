@@ -8,7 +8,7 @@
       <% question.choices.each do |choice| %>
         <div class="choice">
           <%= label_tag choice.content %>
-          <%= radio_button_tag question.id, choice.id, true%>
+          <%= radio_button_tag question.id, choice.id %>
         </div>
       <% end %>
     

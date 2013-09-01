@@ -24,7 +24,7 @@ Classyact::Application.routes.draw do
   get '/signup', :to => 'users#new', :as => 'signup'
   get '/welcome', :to => 'sessions#welcome', :as => 'welcome'
 
-  root :to => "sessions#new"
+  root :to => "sessions#welcome"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

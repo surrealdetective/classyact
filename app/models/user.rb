@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :surveys
 
   has_secure_password
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  validates :email, :uniqueness => true
 
   def self.authenticate(email, password)
     user = find_by_email(email)
