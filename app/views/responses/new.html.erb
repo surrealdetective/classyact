@@ -1,20 +1,21 @@
 <div class="survey">
-  <%= form_tag student_responses_path(@student), :method => "POST" %>
-    <% @questions.each_with_index do |question, index| %>
-      <div class="question">
-        <div class="q-content">      
-          <%= "#{index+1}. #{question.content}" %>
-        </div>
-        <% question.choices.each do |choice| %>
-          <div class="choice">
-            <%= label_tag "#{question.id}[#{choice.id}]", choice.content, :class => "#{choice.content}" %>
-            <%= radio_button_tag question.id, choice.id %>
+  <div class="wrapper">
+    <%= form_tag student_responses_path(@student), :method => "POST" %>
+      <% @questions.each_with_index do |question, index| %>
+        <div class="question clearfix <%= "q-form-#{index+1}" %>">
+          <div class="q-content <%= "q-#{index+1}" %>">      
+            <%= "#{index+1}. #{question.content}" %>
           </div>
-        <% end %>
-      
-      </div>
-      
-    <% end %>
-    <%= submit_tag "Next" %>
-    
+          <% question.choices.each do |choice| %>
+            <div class="<%= "c-#{index+1}" %> choice">
+              <%= label_tag "#{question.id}[#{choice.id}]", choice.content, :class => "#{choice.content}" %>
+              <%= radio_button_tag question.id, choice.id %>
+            </div>
+          <% end %>
+        
+        </div>
+        
+      <% end %>
+    <%= submit_tag "Next set of questions", :class => "btn btn-large btn-block btn-primary" %>
+  </div>
 </div>

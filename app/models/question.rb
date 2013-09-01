@@ -21,14 +21,14 @@ class Question < ActiveRecord::Base
   end
 
   def build_meta_choices
-    self.choices.build(:content => "Question 1", :value => 1)
-    self.choices.build(:content => "Question 2", :value => 2)
-    self.choices.build(:content => "Question 3", :value => 3)
-    self.choices.build(:content => "Question 4", :value => 4)
-    self.choices.build(:content => "Question 5", :value => 5)
-    self.choices.build(:content => "Question 6", :value => 6)
-    self.choices.build(:content => "Question 7", :value => 7)
-    self.choices.build(:content => "Question 8", :value => 8)
+    self.choices.build(:content => "One",   :value => 1)
+    self.choices.build(:content => "Two",   :value => 2)
+    self.choices.build(:content => "Three", :value => 3)
+    self.choices.build(:content => "Four",  :value => 4)
+    self.choices.build(:content => "Five",  :value => 5)
+    self.choices.build(:content => "Six",   :value => 6)
+    self.choices.build(:content => "Seven", :value => 7)
+    self.choices.build(:content => "Eight", :value => 8)
   end
 
   #There should be a choice for each factor, and three questions.

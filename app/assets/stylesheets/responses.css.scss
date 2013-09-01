@@ -3,15 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .q-content {
-  clear: both;
+  // clear: both;
   color: #2980B9;
+  font-size: 16px;
 }
 
 .choice {
   float: left;
   width: 150px; 
   text-align: center;
-  padding-bottom: 40px;
+  // padding-bottom: 40px;
 }
 
 .choice label {
@@ -25,13 +26,25 @@
 }
 
 .question {
-  padding: 0px 15px 20px;
+  clear: both;
   border-bottom: 1px solid grey;
-  margin: 20px 0px;
-  height: 70px;
+  padding: 25px 10px;
+  // margin: 20px 0px;
+  // height: 75px;
 }
 
 .wrapper {
   width: 800px;
   margin: 0 auto;
+}
+
+.q-form-9, .q-form-10, .q-form-11 {
+  background-color: white;
+}
+.q-9, .q-10, .q-11 {
+  color: #E67E22;
+}
+
+.c-9, .c-10, .c-11 {
+  width: 95px;
 }
