@@ -12,7 +12,7 @@ class StudentsController < ApplicationController
       @student = Student.create(params[:student])
       redirect_to new_student_response_path(@student)
     else
-      redirect_to :back, :alert => "Please enter a valid passcode."
+      redirect_to :back, :alert => "Please enter a valid passcode and class id."
     end
     
   end
