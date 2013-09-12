@@ -1,13 +1,15 @@
 class SurveysController < ApplicationController
 
   def new
-    @survey = Survey.new
     @user = params[:user_id]
+    @survey = Survey.new
+    authorize! :create, @survey
   end
 
   def create
     @user = User.find_by_id(params[:user_id])
     @survey = @user.surveys.build(params[:survey])
+    authorize! :create, @survey
     @survey.populate_questions
 
     @survey.save
@@ -15,8 +17,9 @@ class SurveysController < ApplicationController
   end
 
   def show
-    # @user = params[:user_id]
+    @user = params[:user_id]
     @survey = Survey.find_by_id(params[:id])
+    authorize! :read, @survey
     @factors = @survey.factors
     if @survey && @survey.students.present?
       @avg_class_scores = @survey.find_class_avg_scores_for_view

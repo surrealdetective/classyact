@@ -1,11 +1,11 @@
 class StudentsController < ApplicationController
-  skip_before_filter :login_required, :except => [:index]
+  skip_before_filter :login_required, :except => [:index, :show]
 
   #all people can see this page, signup!
   def new
   end
 
-  #people who sign up can access this
+  #Students create their self with the right passcode
   def create
     @survey = Survey.find_by_id(params[:student][:survey_id])
     if @survey && @survey.authenticate(params[:password])
@@ -17,7 +17,7 @@ class StudentsController < ApplicationController
     
   end
 
-  #only shown after you take the survey.
+  #Consider deleting show and index
   def show
     @student = Student.find_by_id(params[:id])
     @survey = @student.survey
