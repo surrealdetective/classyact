@@ -1,9 +1,9 @@
 class SurveysController < ApplicationController
 
   def new
-    @user = params[:user_id]
+    @user = User.find_by_id(params[:user_id])
+    authorize! :read, @user
     @survey = Survey.new
-    authorize! :create, @survey
   end
 
   def create
