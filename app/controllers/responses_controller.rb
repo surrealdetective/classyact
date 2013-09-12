@@ -23,28 +23,4 @@ class ResponsesController < ApplicationController
       redirect_to survey_student_path(@student.survey, @student)
     end
   end
-
-
-  # before_filter :survey_pswd_required
-
-  # def survey_pswd_required
-  #   redirect_to login_path, :notice => "You must be a student of this class!" unless passcoded_in?
-  # end
-
-  # def current_student #finds the current user, but we don't need a session, we just... or maybe we do
-  #   @current_user ||= Student.find(session[:user_id]) if session[:user_id]
-  # end
-  # helper_method :current_user # makes this method accessible in the views
-
-  # def login(user)
-  #   session[:user_id] = user.id
-  #   @current_user = user
-  # end
-
-
-
-  # def passcoded_in?
-  #   !!current_user
-  # end
-
 end
