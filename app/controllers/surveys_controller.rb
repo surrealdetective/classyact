@@ -17,7 +17,7 @@ class SurveysController < ApplicationController
   end
 
   def show
-    @user = params[:user_id]
+    @user = User.find_by_id(params[:user_id])
     @survey = Survey.find_by_id(params[:id])
     authorize! :read, @survey
     @factors = @survey.factors

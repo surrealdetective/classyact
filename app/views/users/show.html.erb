@@ -12,7 +12,7 @@
         </tr>
         <% @surveys.each do |survey| %>
           <tr>
-            <td><%= survey.subject  %></td>
+            <td><%= link_to survey.subject, user_survey_path(@user, survey) %></td>
             <td><%= survey.semester %></td>
             <td><%= survey.id       %></td>
           </tr>
