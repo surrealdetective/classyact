@@ -1,23 +1,45 @@
-<% if @surveys.present? %>
-  <h1>Your Surveys</h1>
+<h1>Welcome to Your Survey Dashboard</h1>
 
-  <div id="surveys">
-    <ul>
-    <% @surveys.each do |survey| %>
-      <li><%= "#{survey.subject} | #{survey.semester} | #{survey.id}" %> </li>
-    <% end %>
-    </ul>
+<% if @surveys.present? %>
+  <div id="survey-index">
+    <div id="surveys">
+      <h2>Surveys</h2>
+      <table>
+        <tr>
+          <th>Subject</th>
+          <th>Semester</th>
+          <th>Survey ID</th>
+        </tr>
+        <% @surveys.each do |survey| %>
+          <tr>
+            <td><%= survey.subject  %></td>
+            <td><%= survey.semester %></td>
+            <td><%= survey.id       %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div id="instructions">
+      <h2>Instructions</h2>
+      <p>
+        Students can sign into your survey with the survey's ID and passcode at http://www.pedagogygap.com/students/new
+      </p>
+    </div>
   </div>
 <% end %>
 
-<h2>Create a New Survey</h2>
+<% unless @surveys.present? %>
 
-<p>The student feedback from ClassyAct informs you of their learning experience and how it can be improved.  This survey gives you qualitative and quantitative data on what your students think is most important, most excellent, and needs improvement.</p> 
+  <h2>Create a New Survey</h2>
 
-<p>Students who take this survey let you know what they learned, how they interacted with peers, their confidence towards learning, whether they learned the inner tools and processes to succeed, how much agency they felt while learning, and whether the class learning environment led them to success.</p>
+  <p>The student feedback from ClassyAct informs you of their learning experience and how it can be improved.  This survey gives you qualitative and quantitative data on what your students think is most important, most excellent, and needs improvement.</p> 
 
-<%= link_to "Learn More" %>
+  <p>Students who take this survey let you know what they learned, how they interacted with peers, their confidence towards learning, whether they learned the inner tools and processes to succeed, how much agency they felt while learning, and whether the class learning environment led them to success.</p>
 
-<div style="float:right;">
+  <%= link_to "Learn More" %>
+
+<% end %>
+
+<div>
 <%= link_to "Create a New Survey", new_user_survey_path(@user) %>
 </div>

@@ -16,10 +16,15 @@
     </div>
   </fieldset>
   <fieldset>
-    <div>
-    <%= label_tag '[survey]password', 'Survey Passcode:' %>
-    <%= password_field_tag '[survey]password' %>
-    <%= submit_tag "Submit" %>
+    <div id="pass-container clearfix">
+      <div id="passcode">
+      <%= label_tag '[survey]password', 'Survey Passcode:' %>
+      <%= password_field_tag '[survey]password' %>
+      <%= submit_tag "Submit" %>
+      </div>
+      <div id="advice">
+        <p>Take care to remember your passcode. Your students will need it to access your survey.</p>
+      </div>
     </div>
   </fieldset>
   
