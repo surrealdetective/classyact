@@ -1,0 +1,7 @@
+<% if count == 3 %>
+  <%= submit_tag "Complete Survey", :class => "btn btn-large btn-block btn-primary" %>
+<% elsif count == 0 %>
+  <%= submit_tag "Survey is already complete!", :class => "btn btn-large btn-block btn-primary" %>
+<% else %>
+  <%= submit_tag "Next set of questions", :class => "btn btn-large btn-block btn-primary" %>
+<% end %>

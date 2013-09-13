@@ -6,6 +6,8 @@ class Response < ActiveRecord::Base
   belongs_to :survey
   belongs_to :question
 
+  validates :choice_id, :presence => true
+
   #there might be a method with takes choice_id inputs
   #and returns responses 
 

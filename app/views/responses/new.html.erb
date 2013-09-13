@@ -1,6 +1,10 @@
 <div class="survey">
   <div class="wrapper">
     <%= form_tag student_responses_path(@student), :method => "POST" %>
+
+      <!-- Error Messages -->
+      <%= render "shared/error_messages", :target => @student %>
+
       <% @questions.each_with_index do |question, index| %>
         <div class="question clearfix <%= "q-form-#{index+1}" %>">
           <div class="q-content <%= "q-#{index+1}" %>">      
@@ -16,6 +20,6 @@
         </div>
         
       <% end %>
-    <%= submit_tag "Next set of questions", :class => "btn btn-large btn-block btn-primary" %>
+      <%= render "responses/survey_submit", :count => @questions.count %>
   </div>
 </div>

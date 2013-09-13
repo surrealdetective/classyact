@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  skip_before_filter :login_required, :except => [:index, :show]
+  skip_before_filter :login_required, :except => [:index]
 
   #all people can see this page, signup!
   def new

@@ -4,7 +4,7 @@
   <div id="surveys">
     <ul>
     <% @surveys.each do |survey| %>
-      <li><%= survey.subject %> <%= survey.semester %></li>
+      <li><%= "#{survey.subject} | #{survey.semester} | #{survey.id}" %> </li>
     <% end %>
     </ul>
   </div>
