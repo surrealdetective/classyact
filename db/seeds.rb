@@ -13,6 +13,7 @@ year = (2012..2023).collect{|x| x}
   s.subject = "Rails"
   s.semester = "Summer " + year.shift.to_s
   s.populate_questions
+  s.password = "flatiron"
   teacher.save
   #Make students with questions
   25.times do 

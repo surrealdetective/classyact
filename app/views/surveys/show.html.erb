@@ -2,16 +2,22 @@
   <%= javascript_include_tag "best-performing-sub-factor.js" %>
 <% end %>
 
-<h1>Class Responses</h1>
+<h1>Student Responses</h1>
 
 <% if @survey && @survey.students.present? %>
   <%= render "surveys/factor_graphs", :avg_class_scores => @avg_class_scores, :meta_important_scores => @meta_important_scores, :meta_improvement_scores => @meta_improvement_scores, :meta_performing_scores => @meta_performing_scores %>
-<% end %>
 
+  <h2>Class Responses by Factor</h2>
+  <% @factors.each do |factor| %>
 
-<h2>Class Responses by Factor</h2>
-<% @factors.each do |factor| %>
+    <%= link_to factor.camelcase, factor_path(@survey, factor) %>
 
-  <%= link_to factor.camelcase, factor_path(@survey, factor) %>
+  <% end %>
+
+<% else %>
+
+  <h4>See your survey results here, after students take your survey.</h4>
+  <%= link_to "Return to your survey dashboard", user_path(@survey.user) %>
+
 
 <% end %>

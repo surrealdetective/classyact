@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def login_required
-    redirect_to login_path, :notice => "You must be logged in!" unless logged_in?
+    redirect_to root_path, :notice => "Login as a teacher or student!" unless logged_in?
   end
 
   def logged_in?
