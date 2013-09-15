@@ -13,7 +13,11 @@ class StudentsController < ApplicationController
         redirect_to new_student_path, :alert => "This survey is closed!" 
         return
       end
-      @student = Student.create(params[:student])
+      survey_id = params[:student][:survey_id]
+      #Modifiy Username to make it reasonably unique
+      username = params[:student][:username].prepend(survey_id)
+      @student = Student.find_or_create_by_username_and_survey_id(username, survey_id)
+      # @student = Student.create(params[:student])
       redirect_to new_student_response_path(@student) and return
     else
       redirect_to :back, :alert => "Please enter a valid passcode and class id."
