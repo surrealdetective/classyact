@@ -281,17 +281,26 @@ class Survey < ActiveRecord::Base
   def find_class_avg_scores
     class_scores = {:thinking => 0, :expectations => 0, :interactions => 0, :discipline => 0, :willing => 0, :direction => 0}
     #add up the sum of all student factor scores
+    incomplete = 0
     self.students.each do |student|
-      scores = self.find_student_factor_scores(student)
-      class_scores[:thinking] += scores[:thinking]
-      class_scores[:expectations] += scores[:expectations]
-      class_scores[:interactions] += scores[:interactions]
-      class_scores[:discipline] += scores[:discipline]
-      class_scores[:willing] += scores[:willing]
-      class_scores[:direction] += scores[:direction] 
+      if student.responses.count == self.questions.count
+        scores = self.find_student_factor_scores(student)
+        class_scores[:thinking] += scores[:thinking]
+        class_scores[:expectations] += scores[:expectations]
+        class_scores[:interactions] += scores[:interactions]
+        class_scores[:discipline] += scores[:discipline]
+        class_scores[:willing] += scores[:willing]
+        class_scores[:direction] += scores[:direction] 
+      else
+        incomplete += 1
+      end
     end
-    student_count = self.students.count
-    class_scores.merge(class_scores){|key, oldval, newval| oldval/student_count.to_f}
+    student_count = self.students.count - incomplete
+    if student_count > 0
+      class_scores.merge(class_scores){|key, oldval, newval| oldval/student_count.to_f}
+    else
+      class_scores
+    end
   end
 
   def find_class_avg_scores_for_view
@@ -306,13 +315,21 @@ class Survey < ActiveRecord::Base
     factor_selection = {0 => :thinking, 1 => :expectations, 2 => :interactions, 3 => :discipline, 4 => :willing, 5 => :direction}
     scores = {:thinking => 0, :expectations => 0, :interactions => 0, :discipline => 0, :willing => 0, :direction => 0}
     students = self.students
+    incomplete = 0
     students.each do |student|
-      if student.responses.present?
+      if student.responses.count == self.questions.count
         index_of_lens = self.questions[lenses[lens]].choices.index(Choice.find_by_id(student.responses[lenses[lens]].choice_id))
         scores[factor_selection[index_of_lens]] += 1
+      else
+        incomplete += 1
       end
     end
-    scores.merge(scores){ |key, oldval, newval| (100*oldval/students.count)/3.3333}
+    student_count = students.count - incomplete
+    if student_count > 0
+      scores.merge(scores){ |key, oldval, newval| (100*oldval/students.count)/3.3333}
+    else
+      scores
+    end
   end
 
   #Re-formats meta scores for the graph view
