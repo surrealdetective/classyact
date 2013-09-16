@@ -8,6 +8,7 @@ class Survey < ActiveRecord::Base
   has_many :responses, :through => :choices
 
   has_secure_password
+  validates :size, :presence => true
 
   #Current Ranges for Questions by ID
   # THINKING = 1..8
