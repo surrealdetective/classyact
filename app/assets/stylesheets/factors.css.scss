@@ -1,3 +1,48 @@
 // Place all the styles related to the factors controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#nav_bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background: url(../images/header-fade.gif) repeat-x;
+  border-bottom: 1px solid #ccc;
+}
+
+  #nav_bar nav {
+    border-left: 1px solid #ccc;
+  }
+
+    #nav_bar nav a {
+     display: inline-block;
+     width: 15%; //equal spacing between all five links 
+     margin: 0;
+     padding: 22px 0;
+     text-transform: uppercase;
+     color: black;
+     text-align: center;
+     border-right: 1px solid #ccc;
+     text-decoration: none;
+     font: 20px "Trebuchet MS", Arial, sans-serif;
+    }
+
+    #nav_bar a.selected {
+      background: rgb(185,192,203);
+      color:  white;
+    }
+
+    #nav_bar nav a:hover {
+      color: white;
+      /* gradient */
+      background: rgb(185,192,203); // Old browsers
+      background: -moz-linear-gradient(top, rgba(185,192,203,1) 0%, rgba(105,121,151,1) 50%, rgba(185,192,203,1) 100%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(185,192,203,1)), color-stop(50%,rgba(105,121,151,1)), color-stop(100%,rgba(185,192,203,1))); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top, rgba(185,192,203,1) 0%,rgba(105,121,151,1) 50%,rgba(185,192,203,1) 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top, rgba(185,192,203,1) 0%,rgba(105,121,151,1) 50%,rgba(185,192,203,1) 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(top, rgba(185,192,203,1) 0%,rgba(105,121,151,1) 50%,rgba(185,192,203,1) 100%); /* IE10+ */
+      background: linear-gradient(to bottom, rgba(185,192,203,1) 0%,rgba(105,121,151,1) 50%,rgba(185,192,203,1) 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b9c0cb', endColorstr='#b9c0cb',GradientType=0 ); /* IE6-9 */
+    }

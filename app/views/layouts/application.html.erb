@@ -8,12 +8,25 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="nav_bar">
+    <div class="wrapper">
+      <nav>
+        <%= link_to %>
+        <%= link_to %>
+        <%= link_to %>
+        <%= link_to %>
+        <%= link_to %>
+      </nav>
+    </div>
+  </div>
 
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>
 
-<%= yield %>
+<div id="content">
+  <%= yield %>
+</div>
 
 </body>
 </html>

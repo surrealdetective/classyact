@@ -13,7 +13,7 @@ class SurveysController < ApplicationController
     @survey.populate_questions
 
     @survey.save
-    redirect_to user_survey_path(@user, @survey)
+    redirect_to user_path(@user)
   end
 
   def show
