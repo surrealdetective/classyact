@@ -33,8 +33,7 @@ $(document).ready(function() {
         },
         
         tooltip: {
-            shared: true,
-            valuePrefix: '$'
+            shared: true
         },
         
         legend: {
