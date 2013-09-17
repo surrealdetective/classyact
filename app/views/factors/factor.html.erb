@@ -1,7 +1,7 @@
 <!-- Includes Javascript for Graphs -->
 <%= render 'factors/javascripts' %>
 
-<h1>The <%= params[:factor].capitalize %> Sub-factor</h1>
+<h1><%= link_to survey_full_name(@survey), user_survey_path(@survey, @survey.user), :id=> "breadcrumb" %>: The <%= params[:factor].capitalize %> Sub-factor</h1>
 
 <!-- Renders Graphs -->
 <div id="subgraph-div" class="clearfix">
