@@ -8,25 +8,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="nav_bar">
-    <div class="wrapper">
-      <nav>
-        <%= link_to %>
-        <%= link_to %>
-        <%= link_to %>
-        <%= link_to %>
-        <%= link_to %>
-      </nav>
-    </div>
+  <% unless params[:controller] == "sessions" || "studentsnew" == [params[:controller], params[:action]].join %>
+  <div style="text-align:center;">
+    <%= link_to "Pedagogy Gap", user_path(@user), :id => "logo", :style => "text-decoration: none;" %>
   </div>
+  <% end %>
 
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>
 
-<div id="content">
   <%= yield %>
-</div>
 
 </body>
 </html>

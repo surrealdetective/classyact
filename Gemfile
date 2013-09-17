@@ -50,3 +50,6 @@ gem "cancan"
 # To use debugger
   gem 'debugger'
   gem 'gruff'
+
+# Selected Class
+  gem 'nav_lynx'

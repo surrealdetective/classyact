@@ -73,6 +73,8 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.23)
     multi_json (1.7.7)
+    nav_lynx (1.0.0)
+      rails (~> 3.2.13)
     polyglot (0.3.3)
     populator (1.0.0)
     quiet_assets (1.0.2)
@@ -141,6 +143,7 @@ DEPENDENCIES
   faker
   gruff
   jquery-rails
+  nav_lynx
   populator
   quiet_assets
   rails (= 3.2.13)
