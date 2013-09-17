@@ -6,27 +6,26 @@
   <h1>Student Responses</h1>
 
   <% if @survey && @survey.students.present? %>
-    <%= render "surveys/factor_graphs", :avg_class_scores => @avg_class_scores, :meta_important_scores => @meta_important_scores, :meta_improvement_scores => @meta_improvement_scores, :meta_performing_scores => @meta_performing_scores %>
-
     
-  <div id="nav_bar">
-    <h2>Class Responses by Factor</h2>
-    <div class="wrapper">
-      <nav>
-        <% @factors.each do |factor| %>
-          <%= link_to factor.camelcase, factor_path(@survey, factor) %>
-        <% end %>
-      </nav>
+    <div id="graph-div" class="clearfix">
+      <%= render "surveys/factor_graphs", :avg_class_scores => @avg_class_scores, :meta_important_scores => @meta_important_scores, :meta_improvement_scores => @meta_improvement_scores, :meta_performing_scores => @meta_performing_scores %>
     </div>
-  </div>
-
-
+    
+    <div id="nav_bar">
+      <h2>Class Responses by Factor</h2>
+      <div class="wrapper">
+        <nav>
+          <% @factors.each do |factor| %>
+            <%= link_to factor.camelcase, factor_path(@survey, factor) %>
+          <% end %>
+        </nav>
+      </div>
+    </div>
 
   <% else %>
 
     <h4>See your survey results here, after students take your survey.</h4>
     <%= link_to "Return to your survey dashboard", user_path(@survey.user) %>
-
 
   <% end %>
 </div>

@@ -15,7 +15,7 @@ $(document).ready(function() {
         },
         
         pane: {
-            size: '80%'
+            size: '61%'
         },
         
         xAxis: {
@@ -38,16 +38,16 @@ $(document).ready(function() {
         legend: {
             align: 'bottom',
             verticalAlign: 'top',
-            y: 100,
+            y: 40,
             layout: 'vertical'
         },
         
         series: [{
-            name: 'Average Scores by Factor',
+            name: 'Avg Score',
             data: avg_class_scores,
             pointPlacement: 'on'
         }, {
-            name: 'Aggregated Learning Preferences',
+            name: 'Class Preferences Score',
             data: meta_performing_count,
             pointPlacement: 'on'
         }]

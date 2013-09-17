@@ -327,7 +327,7 @@ class Survey < ActiveRecord::Base
     end
     student_count = students.count - incomplete
     if student_count > 0
-      scores.merge(scores){ |key, oldval, newval| (100*oldval/students.count)/3.3333}
+      scores.merge(scores){ |key, oldval, newval| ((100*oldval/students.count)/3.3333).round(4)}
     else
       scores
     end

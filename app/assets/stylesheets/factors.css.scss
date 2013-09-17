@@ -31,7 +31,6 @@
      border-right: 1px solid #ccc;
      text-decoration: none;
      font-size: 16px;
-     //font: 20px "Trebuchet MS", Arial, sans-serif;
     }
 
     #nav_bar a.selected {
@@ -52,7 +51,6 @@
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b9c0cb', endColorstr='#b9c0cb',GradientType=0 ); /* IE6-9 */
     }
 
-// #content {
-//   position: absolute;
-//   top: 67px;
-// }
+#content {
+  background: #BDC3C7;
+}

@@ -5,11 +5,31 @@
 .factor-graphs {
   position: relative;
   float: left;
-  width: 300px;
+  width: 298.499px;
+  border-right: 1px solid #2C3E50;
+}
+
+.subfactor-graphs {
+  position: relative;
+  float: left;
+  width: 298.49px;
+  border-right: 1px solid #2C3E50;
+}
+
+#subgraph-div {
+  border-top: 1px solid #2C3E50;
+  border-bottom: 1px solid #2C3E50;
+  border-left: 1px solid #2C3E50;
 }
 
 .graph-w {
   width:900px;
+}
+
+#graph-div {
+  border-top: 1px solid #2C3E50;
+  border-bottom: 1px solid #2C3E50;
+  border-left: 1px solid #2C3E50;
 }
 
 #passcode {

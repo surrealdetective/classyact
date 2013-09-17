@@ -4,4 +4,6 @@
 <h1>The <%= params[:factor].capitalize %> Sub-factor</h1>
 
 <!-- Renders Graphs -->
-<%= render "factors/sub_factors", :survey => @survey, :sub_avg_factor => @sub_avg_factor, :import => @import, :improve => @improve, :perform => @perform %>
+<div id="subgraph-div" class="clearfix">
+  <%= render "factors/sub_factors", :survey => @survey, :sub_avg_factor => @sub_avg_factor, :import => @import, :improve => @improve, :perform => @perform %>
+</div>
