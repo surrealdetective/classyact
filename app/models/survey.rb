@@ -208,13 +208,13 @@ class Survey < ActiveRecord::Base
     when :thinking
       ['Necessary Skills', 'Talent Leverage', 'Life Decisions', 'Value-add Skills']
     when :expectations
-      ['Observing', 'Progressing', 'Comprehensiveness', 'Durability']
+      ['Observing', 'Progress-ing', 'Comprehensiveness', 'Durability']
     when :interactions
       ['Outside-inside', 'Inside-inside', 'Inside-outside', 'Outside-outside']
     when :discipline
-      ['Planned', 'Scaffolded', 'Focused', 'Scoped']
+      ['Planned', 'Scaffold-ed', 'Focused', 'Scoped']
     when :willing
-      ['Timely', 'Substantive', 'Possibility to Act', 'Action']
+      ['Timely', 'Substan-tive', 'Possibility to Act', 'Action']
     when :direction
       ['Comfort', 'Curiosity', 'Activity', 'Order']
     end
