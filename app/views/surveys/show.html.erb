@@ -11,16 +11,7 @@
       <%= render "surveys/factor_graphs", :avg_class_scores => @avg_class_scores, :meta_important_scores => @meta_important_scores, :meta_improvement_scores => @meta_improvement_scores, :meta_performing_scores => @meta_performing_scores %>
     </div>
     
-    <div id="nav_bar">
-      <h2>Class Responses by Factor</h2>
-      <div class="wrapper">
-        <nav>
-          <% @factors.each do |factor| %>
-            <%= link_to factor.camelcase, factor_path(@survey, factor) %>
-          <% end %>
-        </nav>
-      </div>
-    </div>
+    <%= render "factors/nav", :factors => @factors, :survey => @survey %>
 
   <% else %>
 

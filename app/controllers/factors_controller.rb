@@ -2,6 +2,7 @@ class FactorsController < ApplicationController
 
   def factor
     @survey           = Survey.find_by_id(params[:survey_id])
+    @factors          = @survey.factors
     @user             = @survey.user
     authorize! :read, @survey
     if @survey.students.any?

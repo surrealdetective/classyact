@@ -1,0 +1,10 @@
+<div id="nav_bar">
+  <h2>Class Responses by Factor</h2>
+  <div class="wrapper">
+    <nav>
+      <% factors.each do |factor| %>
+        <%= link_to factor.camelcase, factor_path(survey, factor) %>
+      <% end %>
+    </nav>
+  </div>
+</div>
