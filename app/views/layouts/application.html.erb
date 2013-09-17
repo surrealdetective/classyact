@@ -8,18 +8,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% unless params[:controller] == "sessions" || "studentsnew" == [params[:controller], params[:action]].join %>
-    <div style="text-align:center;">
-      <%= link_to "Pedagogy Gap", user_path(@user), :id => "logo", :style => "text-decoration: none;" %>
-    </div>
-  <% end %>
-
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, :id => "flash_#{name}" %>
   <% end %>
 
-  <div class=" graph-w wrapper clearfix" >
+  <% unless params[:controller] == "sessions" || "studentsnew" == [params[:controller], params[:action]].join %>
+    <div style="text-align:center;">
+      <%= link_to "Pedagogy Gap", user_path(@user), :id => "logo", :style => "text-decoration: none;" %>
+    </div>
+    
+    <div class=" graph-w wrapper clearfix" >
     <%= yield %>
-  </div>
+    </div>
+  <% else %>
+    <%= yield %>
+  <% end %>
+
+
+
+  
 </body>
 </html>
