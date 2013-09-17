@@ -1,7 +1,10 @@
 <!-- Includes Javascript for Graphs -->
 <%= render 'factors/javascripts' %>
 
-<h1><%= link_to survey_full_name(@survey), user_survey_path(@survey, @survey.user), :id=> "breadcrumb" %>: The <%= params[:factor].capitalize %> Sub-factor</h1>
+<h1 class="info"><%= link_to survey_full_name(@survey), user_survey_path(@survey, @survey.user), :id=> "breadcrumb" %>: The <%= params[:factor].capitalize %> Sub-factor</h1>
+<a class="fancybox info" data-href="<%= factor_about_path %>" href="#">
+  <em>What is this?</em>
+</a>
 
 <!-- Renders Graphs -->
 <div id="subgraph-div" class="clearfix">

@@ -51,6 +51,18 @@
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b9c0cb', endColorstr='#b9c0cb',GradientType=0 ); /* IE6-9 */
     }
 
+.info {
+  display: inline;
+  text-decoration: none;
+}
+
+a.info {
+  color: #2980B9;
+}
+
+a.info:hover {
+ color: #3498DB; 
+}
 // #content {
 //   background: #BDC3C7;
 // }

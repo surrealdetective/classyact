@@ -18,3 +18,5 @@
 //= require best-performing.js
 //= require most-important.js
 //= require needs-improvement.js
+//= require ../../../vendor/assets/javascripts/jquery.fancybox.js
+//= require applyfancybox.js

@@ -3,7 +3,10 @@
 <% end %>
 
 <div class="wrapper graph-w">
-  <h1>Student Responses</h1>
+  <h1 class="info">Student Responses</h1>
+  <a class="fancybox info" data-href="<%= about_path %>" href="#">
+    <em>What is this?</em>
+  </a>
 
   <% if @survey && @survey.students.present? %>
     

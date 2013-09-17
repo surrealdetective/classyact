@@ -16,4 +16,8 @@ class UsersController < ApplicationController
     @surveys = @user.surveys
     authorize! :show, @user
   end
+
+  def info
+    
+  end
 end

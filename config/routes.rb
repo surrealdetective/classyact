@@ -1,6 +1,8 @@
 Classyact::Application.routes.draw do
 
-  get '/surveys/:id', :to => 'surveys#show', :as => 's_survey'
+  # Static Information
+  get '/about', :to => 'sessions#about', :as => 'about'
+  get '/about/:factor', :to => "sessions#factor", :as => "factor_about"
 
   resources :students, :only => [:new, :create] do
     resources :responses, :only => [:new, :create]
