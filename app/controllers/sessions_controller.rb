@@ -26,4 +26,28 @@ class SessionsController < ApplicationController
     redirect_to login_path, :notice => "You are logged out"
   end
 
+  def factor
+    @factor_about = about_info params[:factor]
+  end
+
+  def about
+    
+  end
+
+  private
+
+  def about_info factor
+    case factor
+    when "thinking"
+      "You arrived at thinking"
+    when "willing"
+      "You arrived at willing"
+    when "interactions"
+      "sessions/interactions"
+    when "discipline"
+    when "direction"
+    when "expectations"
+    end
+  end
+
 end
