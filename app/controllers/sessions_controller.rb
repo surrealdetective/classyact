@@ -39,14 +39,17 @@ class SessionsController < ApplicationController
   def about_info factor
     case factor
     when "thinking"
-      "You arrived at thinking"
+      "sessions/thinking"
     when "willing"
-      "You arrived at willing"
+      "sessions/willing"
     when "interactions"
       "sessions/interactions"
     when "discipline"
+      "sessions/discipline"
     when "direction"
+      "sessions/direction"
     when "expectations"
+      "sessions/expectations"
     end
   end
 
