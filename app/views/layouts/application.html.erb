@@ -12,13 +12,19 @@
     <%= content_tag :div, msg, :id => "flash_#{name}" %>
   <% end %>
 
+  <!-- show pedagpgy gap login survey and factor controllers -->
   <% unless ['sessions', 'responses'].include?(params[:controller]) || "studentsnew" == [params[:controller], params[:action]].join %>
-    <div style="text-align:center;">
+    <div id="top-nav clearfix">
+      <%= link_to "Logout", logout_path, :class=>"btn btn-inverse", :style => "float:right; margin-right: 20px; margin-top: 10px;" %>
+    </div>
+
+    <div style="text-align:center; clear: both;">
       <%= link_to "Pedagogy Gap", user_path(@user), :id => "logo", :style => "text-decoration: none;" %>
     </div>
+
     
     <div class=" graph-w wrapper clearfix" >
-    <%= yield %>
+      <%= yield %>
     </div>
   <% else %>
     <%= yield %>
