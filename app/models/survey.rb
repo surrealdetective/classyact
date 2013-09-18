@@ -237,15 +237,24 @@ class Survey < ActiveRecord::Base
 
   def find_class_sub_scores(factor)
     class_scores = {:first => 0, :second => 0, :third => 0, :fourth => 0}
+    incomplete = 0
     self.students.each do |student|
-      scores = self.find_factor_sub_scores(student, factor)
-      class_scores[:first] += scores[:first]
-      class_scores[:second] += scores[:second]
-      class_scores[:third] += scores[:third] 
-      class_scores[:fourth] += scores[:fourth]
+      if student.responses.count == self.questions.count
+        scores = self.find_factor_sub_scores(student, factor)
+        class_scores[:first] += scores[:first]
+        class_scores[:second] += scores[:second]
+        class_scores[:third] += scores[:third] 
+        class_scores[:fourth] += scores[:fourth]
+      else
+        incomplete += 1
+      end
     end
-    student_count = self.students.count.to_f
-    class_scores.merge(class_scores){|key, oldval, newval| oldval/student_count}
+    student_count = self.students.count.to_f - incomplete
+    if student_count > 0
+      class_scores.merge(class_scores){|key, oldval, newval| (oldval/student_count).round(2)}
+    else
+      class_scores
+    end
   end
 
   def find_class_sub_scores_for_view(factor)
@@ -264,13 +273,21 @@ class Survey < ActiveRecord::Base
     #Track the meta count 
     scores = {:first => 0, :second => 0, :third => 0, :fourth => 0}
     students = self.students
+    incomplete = 0
     students.each do |student|
-      if student.responses.present?
+      if student.responses.count == self.questions.count
         index_of_lens = self.questions[lenses[lens]].choices.index(Choice.find_by_id(student.responses[lenses[lens]].choice_id))
         scores[factor_selection[index_of_lens]] += 1
+      else
+        incomplete += 1
       end
     end
-    scores.merge(scores){ |key, oldval, newval| (100*oldval/students.count)/5.0}
+    student_count = students.count.to_f - incomplete
+    if student_count > 0
+      scores.merge(scores){ |key, oldval, newval| ((100*oldval/student_count)/5.00).round(2)}
+    else
+      scores
+    end
   end
 
   def find_class_meta_sub_scores_for_view(factor, lens)

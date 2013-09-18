@@ -12,7 +12,7 @@
     <%= content_tag :div, msg, :id => "flash_#{name}" %>
   <% end %>
 
-  <% unless params[:controller] == "sessions" || "studentsnew" == [params[:controller], params[:action]].join %>
+  <% unless ['sessions', 'responses'].include?(params[:controller]) || "studentsnew" == [params[:controller], params[:action]].join %>
     <div style="text-align:center;">
       <%= link_to "Pedagogy Gap", user_path(@user), :id => "logo", :style => "text-decoration: none;" %>
     </div>
