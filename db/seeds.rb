@@ -1,14 +1,10 @@
-#Create sample data for seeds
 year = (2012..2023).collect{|x| x}
 
-#Seed 10 teachers with 25 students each
-10.times do
-  #Make a teacher
+3.times do
   teacher = User.new
-  #teacher.username = Faker::Name.first_name
   teacher.password = 'password123'
   teacher.email = Faker::Internet.email
-  #Make a survey
+  
   s = teacher.surveys.new
   s.subject = "Rails"
   s.semester = "Summer " + year.shift.to_s
@@ -16,6 +12,7 @@ year = (2012..2023).collect{|x| x}
   s.password = "flatiron"
   s.size = 25
   teacher.save
+  
   #Make students with questions
   25.times do 
     student = s.students.create(:username => Faker::Name.first_name)
@@ -26,6 +23,3 @@ year = (2012..2023).collect{|x| x}
   end
   teacher.save
 end
-
-#later, set up methods that re-use questions and their answers.
-#however, surveys differ bc they have different owners, subjects, and etc.

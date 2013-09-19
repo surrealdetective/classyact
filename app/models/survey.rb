@@ -208,7 +208,7 @@ class Survey < ActiveRecord::Base
     when :thinking
       ['Necessary Skills', 'Talent Leverage', 'Life Decisions', 'Value-add Skills']
     when :expectations
-      ['Observing', 'Progress-ing', 'Comprehensiveness', 'Durability']
+      ['Observing', 'Challeng-ing', 'Comprehensiveness', 'Durability']
     when :interactions
       ['Outside-inside', 'Inside-inside', 'Inside-outside', 'Outside-outside']
     when :discipline

@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  skip_before_filter :login_required, :only => [:new, :create, :welcome]
+  skip_before_filter :login_required, :only => [:new, :create, :welcome, :logout]
 
   def new
     @title = "Login"
