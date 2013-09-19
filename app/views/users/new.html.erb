@@ -1,14 +1,18 @@
-<h1>Sign Up for Pedagogy Gap</h1>
+<div class=" graph-w wrapper clearfix" >
 
-<%= form_tag @user do %>
-  <fieldset>
-    <%= label_tag "email", 'E-mail:' %>
-    <%= text_field_tag 'email' %>
-  </fieldset>
-  <fieldset>
-    <%= label_tag 'password', 'Password:' %>
-    <%= password_field_tag 'password' %>
-  </fieldset>
+  <h1>Sign Up for Pedagogy Gap</h1>
 
-  <%= submit_tag "Submit" %>
-<% end %>
+  <%= form_tag @user do %>
+    <fieldset>
+      <%= label_tag "email", 'E-mail:' %>
+      <%= text_field_tag 'email' %>
+    </fieldset>
+    <fieldset>
+      <%= label_tag 'password', 'Password:' %>
+      <%= password_field_tag 'password' %>
+    </fieldset>
+
+    <%= submit_tag "Submit" %>
+  <% end %>
+
+</div>
