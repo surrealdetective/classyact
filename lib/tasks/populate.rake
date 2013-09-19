@@ -1,7 +1,7 @@
 namespace :db do
   desc "custom populate"
   task :populate, [:email] => :environment do |t, args|
-    require "Faker"
+    #require "Faker"
 
     teacher           = User.new
     email             = args[:email]
