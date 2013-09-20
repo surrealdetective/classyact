@@ -12,8 +12,9 @@
     <%= content_tag :div, msg, :id => "flash_#{name}" %>
   <% end %>
 
-  <!-- show pedagpgy gap login survey and factor controllers -->
-  <% unless ['sessions', 'responses'].include?(params[:controller]) || ["studentsnew", "usersnew"].include?([params[:controller], params[:action]].join) %>
+  <!-- Do not show Pedagogy Gap header for students or login pages -->
+  <% unless ['sessions', 'responses', 'students'].include?(params[:controller]) || ["usersnew"].include?([params[:controller], params[:action]].join) %>
+
     <div id="top-nav clearfix">
       <%= link_to "Logout", logout_path, :class=>"btn btn-inverse", :style => "float:right; margin-right: 20px; margin-top: 10px;" %>
     </div>

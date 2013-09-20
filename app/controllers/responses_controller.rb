@@ -7,11 +7,6 @@ class ResponsesController < ApplicationController
     @questions = @survey.questions.limit(11).offset(@student.responses.count)
   end
 
-  #this should lead to student show page
-
-  #if the number of questions answered
-  #does not equal 
-  #do not save. #do redirect to the new page
   def create
     @student = Student.find_by_id(params[:student_id])
     @survey = @student.survey

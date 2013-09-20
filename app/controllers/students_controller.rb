@@ -1,4 +1,4 @@
-class StudentsController < ApplicationController
+  class StudentsController < ApplicationController
   skip_before_filter :login_required, :except => [:index]
 
   #all people can see this page, signup!
@@ -28,8 +28,8 @@ class StudentsController < ApplicationController
   #Consider deleting show and index
   def show
     @student = Student.find_by_id(params[:id])
-    @survey = @student.survey
-    @factor_scores = @survey.find_student_factor_scores(@student)
+    #@survey = @student.survey
+    #@factor_scores = @survey.find_student_factor_scores(@student)
   end
 
   #show this for the teacher only
