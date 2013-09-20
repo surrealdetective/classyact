@@ -27,6 +27,13 @@
     </div>
   <% end %>
 
-  <h4>Haven't signed up yet?</h4>
-  <%= link_to "Create a new account", new_user_path %>
+  <div>
+    <h4 style="margin-bottom:2px;">Haven't signed up yet?</h4>
+    <%= link_to "Create a new account", new_user_path %>
+  </div>
+  <div>
+    <p style="margin-bottom:0; margin-top:15px;">In the wrong place?</p>
+    <%= link_to "Yes, I'm a student", new_student_path, :style=> "text-decoration:none;" %>
+  </div>
+
 </div>
