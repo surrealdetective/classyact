@@ -28,7 +28,7 @@
   #Consider deleting show and index
   def show
     @student = Student.find_by_id(params[:id])
-    #@survey = @student.survey
+    @survey = @student.survey
     #@factor_scores = @survey.find_student_factor_scores(@student)
   end
 
