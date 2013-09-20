@@ -1,1 +1,4 @@
-<h1>Thanks for taking the survey, <%= @student.username.humanize %>!</h1>
+<div id="student-header">
+  <h1>Thanks for taking the survey, <%= student_username @student, @survey %>!</h1>
+  <%= link_to "Back to Home", root_path %>
+</div>
