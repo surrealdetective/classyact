@@ -9,12 +9,12 @@ namespace :db do
     teacher.password  = name
     teacher.email     = email
       
-    s = teacher.surveys.new
-    s.subject = name.capitalize
-    s.semester = "Fall 2013"
+    s           = teacher.surveys.new
+    s.subject   = name.capitalize
+    s.semester  = "Fall 2013"
     s.populate_questions
-    s.password = name
-    s.size = 35
+    s.password  = name
+    s.size      = 100000
     teacher.save
     
     #Make students with questions
