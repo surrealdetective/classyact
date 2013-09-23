@@ -1,35 +1,19 @@
-#Seats
-Don't worry about seats yet.
-For now, create the current_user pattern
-for surveys only, in the responses controller.
+# Pedagogy Gap Readme
 
-For this, change the form so that surveys have a password and seats too.
+## Summary
 
-#surveys#new
+<p>Results from the Pedagogy Gap Survey give teachers actionable information on where to improve their practice. Educators learn what students think is most important to learn, as well as where the classroom needs most improvement and is best performing. Educators use these metrics to focus on areas that make the greatest impact on their students.</p>
 
+## Instructions
 
-OBSERVATION
-#Graph 1: Graph 1 - Most Important
-Hexagon, first of averages
-Hexagon, second of which factors students though were most important (this is a wierd calculation)
+    1. open a terminal 
+    2. git clone
+    3. cd into your project folder
+    4. bundle install 
+    5. rake db:populate[teacher@teacher.com]
 
-#Graph 2: Graph 2 - Needs Most Improvement
-Hexagon, first of averages
-Hexagon, second of which factors students though were most improvement
+        This will give you a username and password with mock student results. You can sign in with this info: {email: teacher@teacher.com, password: teacher, survey_password: teacher}. 
 
-#Graph 3: Best Performing
-Hexagon, first of averages
-Hexagon, second of which factors students though were best performing
+    6. rails s
 
-
-
-ANALYSIS
-PER FACTOR
-#Graph 4: A Rectangle - Most Important
-1. Avg in sets of 2
-2. Sum of meta questions + calculation.
-
-
-
-
-SMART GOALS
+For more info on the Pedagogy Gap, please review the information in the site, see about.html.erb, and any partials under views/sessions.
