@@ -1,15 +1,11 @@
-<!-- <div id="welcome-wrapper" class="clearfix"> -->
-  <div id="welcome-header">
-
+<div id="welcome">
+  <div>
+    <h1 id="logo">Pedagogy Gap</h1>
+    <h3>Help make learning relevant for students</h3>
   </div>
+  <%= link_to "I'm a teacher", login_path, :class => "btn btn-large btn-block btn-info" %>
 
-  <div id="welcome">
-    <div>
-      <h1 id="logo">Pedagogy Gap</h1>
-      <h3>Help make learning relevant for students</h3>
-    </div>
-    <%= link_to "I'm a teacher", login_path, :class => "btn btn-large btn-block btn-info" %>
+  <%= link_to "I'm a student", new_student_path, :class => "btn btn-large btn-block btn-info" %>
+</div>
 
-    <%= link_to "I'm a student", new_student_path, :class => "btn btn-large btn-block btn-info" %>
-  </div>
-<!-- </div> #welcome-wrapper -->
+<meta name="Pedagogy Gap" content="Pedagogy Gap is a free online survey that helps teachers make learning more relevant for their middle and high school kids.">

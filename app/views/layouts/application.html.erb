@@ -12,7 +12,6 @@
     <%= content_tag :div, msg, :id => "flash_#{name}" %>
   <% end %>
 
-  <!-- Do not show Pedagogy Gap header for students or login pages -->
   <% unless ['sessions', 'responses', 'students'].include?(params[:controller]) || ["usersnew"].include?([params[:controller], params[:action]].join) %>
 
     <div id="top-nav clearfix">
