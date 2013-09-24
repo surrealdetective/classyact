@@ -36,11 +36,11 @@ group :development do
 end
 
 group :development, :test do
-  gem "rb-fsevent", ~> "0.9.3"
-  gem "guard", ~> "1.8.2"
-  gem "guard-rspec", ~> "3.0.2"
-  gem "rspec-rails", ~> "2.14.0"
-  # gem "shoulda-matchers", "2.1.0"
+  gem "rb-fsevent", "~> 0.9.3"
+  gem "guard", "~> 1.8.2"
+  gem "guard-rspec", "~> 3.0.2"
+  gem "rspec-rails", "~> 2.14.0"
+  gem "shoulda-matchers", "~> 2.4.0"
   # gem "capybara", "2.1.0"
   # gem "launchy", "2.2.0"
 end
