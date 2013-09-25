@@ -4,13 +4,15 @@
  * Tablet Landscape: 1024px
  */
 
-// @media only screen and (max-width: 1024px) {
-  
+@media only screen and (max-width: 1024px) {
+  .graph-w {
+    width: 100%;
+  }
 
   /* videos forms, images, audio-tags, tables */
   /* set width to 100%, then size will scale down on smaller devices */
   /* do this in the main stylesheet */
-// }
+}
 
 
 /**

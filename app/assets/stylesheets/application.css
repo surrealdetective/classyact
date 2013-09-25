@@ -20,3 +20,8 @@
  *= require users.css.scss
  *= require device_styles.css.scss
  */
+
+ /* scale all images, and media to accomodate responsive layout. */
+img, video, audio, iframe, form, table {
+  width: 100%;
+}
