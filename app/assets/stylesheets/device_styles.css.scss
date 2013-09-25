@@ -52,6 +52,21 @@
     padding: 8px 12px;
   }
 
+  #value-prop {
+    position: static;
+    display: none;
+    float: left;
+  }
+
+  #login {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: left;
+    padding: 50px 10px 0;
+  }
+
 }
 
 /**
