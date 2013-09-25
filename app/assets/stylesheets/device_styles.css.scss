@@ -1,0 +1,59 @@
+/********** Device Styles **********/
+
+/**
+ * Tablet Landscape: 1024px
+ */
+
+// @media only screen and (max-width: 1024px) {
+  
+
+  /* videos forms, images, audio-tags, tables */
+  /* set width to 100%, then size will scale down on smaller devices */
+  /* do this in the main stylesheet */
+// }
+
+
+/**
+ * Tablet Portrait: 768px
+ */
+
+/* nav links a little smaller */
+// @media only screen and (max-width: 768px) {
+  
+//  }
+
+
+
+/**
+ * Smartphone Landscape: 480px
+ */
+
+// @media only screen and (max-width: 480px) {
+
+// }
+
+
+/**
+ * Smartphone Portrait: 320px
+ */
+
+@media only screen and (max-width: 320px) {
+  #logo {
+    font-size: 3em;
+  }
+  
+  #welcome h3 {
+    font-size: 1.1em;
+  }
+
+  #welcome a {
+    font-size: 1.05em;
+    margin: 0 15px;
+    padding: 8px 12px;
+  }
+
+}
+
+/**
+ * Printer
+ */
