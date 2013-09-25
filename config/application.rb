@@ -60,6 +60,6 @@ module Classyact
     config.assets.version = '1.0'
 
     #Add Individual Stylesheets and JS files
-    config.assets.precompile += ['import.js', 'improve.js', 'perform.js']
+    config.assets.precompile += ['import.js', 'improve.js', 'perform.js', 'device_styles.css.scss']
   end
 end

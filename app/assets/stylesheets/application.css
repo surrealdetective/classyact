@@ -12,5 +12,11 @@
  *= require flat-ui.css
  *= require jquery.fancybox.css
  *= require_self
- *= require_tree .
+ *= require factors.css.scss
+ *= require responses.css.scss
+ *= require sessions.css.scss
+ *= require students.css.scss
+ *= require surveys.css.scss
+ *= require users.css.scss
+ *= require device_styles.css.scss
  */
