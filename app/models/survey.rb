@@ -31,17 +31,11 @@ class Survey < ActiveRecord::Base
 
   def method_missing(m, *args)
     method = m.to_s
+    # build_: [thinking, interactions, willing, expectations, discipline, direction, overview] questions
     if method.start_with?("build_")
       factor   = method[6..-1].to_sym
       if self.question_categories.include?(factor)
-        case args[1]
-        when "agree"
-          q_type = :build_question_with_agree_choices
-        when "freq"
-          q_type = :build_question_with_frequency_choices
-        when "overview"
-          q_type = :build_question_with_overview_choices
-        end
+        q_type = "fill_question_with_#{args[1]}_choices".to_sym
         PEDAGOGY_GAP_QUESTIONS[factor].flatten.each_with_index do |sub_factor_qs, index|
           next if index.even?
           sub_factor_qs.each { |question| self.send(q_type, :content => question) }
@@ -50,42 +44,16 @@ class Survey < ActiveRecord::Base
       else
         raise ArgumentError, "Can't find #{factor}"
       end
+    # fill_question_with: [agree, meta, frequency, overview] : choices
+    elsif method.start_with?("fill_question_with_")
+      choice_builder = "build_#{method[19..-9]}_choices".to_sym
+      q              = self.questions.build(args[0])
+      q.send(choice_builder)
     else
       super
     end
   end
-
-  def populate_questions
-    # Build 11 questions for each factor, plus 3 overview questions, see method_missing
-    build_thinking      true,  "agree"
-    build_expectations  true,  "agree"
-    build_interactions  true,  "freq"
-    build_discipline    true,  "freq"
-    build_willing       true,  "freq"
-    build_direction     true,  "agree"
-    build_overview      false, "overview"
-  end
-
-  def build_question_with_agree_choices(q_content)
-    q = self.questions.build(q_content)
-    q.build_agree_choices
-  end
-
-  def build_question_with_meta_choices(q_content)
-    q = self.questions.build(q_content)
-    q.build_meta_choices
-  end
-
-  def build_question_with_frequency_choices(q_content)
-    q = self.questions.build(q_content)
-    q.build_frequency_choices
-  end
-
-  def build_question_with_overview_choices(q_content)
-    q = self.questions.build(q_content)
-    q.build_overview_choices
-  end
-
+  
   #Collects the values of all student responses (useless for meta questions)
   def student_score(student)
     Choice.joins(:responses)

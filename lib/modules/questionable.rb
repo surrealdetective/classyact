@@ -119,16 +119,23 @@ module Questionable
         :needs_most_improvement => ['Of the above 6 factors, select what is "needs most improvement" to you.'],
         :most_excellent => ['Of the above 6 factors, select what is "most excellent" to you.']
       }
-    }
-
-
-
-    
+    }    
     
   def build_meta
-    self.build_question_with_meta_choices(:content => 'Of the above 8 questions, select what is "most important" to you.')
-    self.build_question_with_meta_choices(:content => 'Of the above 8 questions, select what "needs most improvement" to you.')
-    self.build_question_with_meta_choices(:content => 'Of the above 8 questions, select what is "most excellent" to you.')
+    self.fill_question_with_meta_choices(:content => 'Of the above 8 questions, select what is "most important" to you.')
+    self.fill_question_with_meta_choices(:content => 'Of the above 8 questions, select what "needs most improvement" to you.')
+    self.fill_question_with_meta_choices(:content => 'Of the above 8 questions, select what is "most excellent" to you.')
+  end
+
+  def populate_questions
+    # Build 11 questions for each factor, plus 3 overview questions, see method_missing
+    build_thinking      true,  "agree"
+    build_expectations  true,  "agree"
+    build_interactions  true,  "frequency"
+    build_discipline    true,  "frequency"
+    build_willing       true,  "frequency"
+    build_direction     true,  "agree"
+    build_overview      false, "overview"
   end
 
 end
