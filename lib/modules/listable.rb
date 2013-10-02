@@ -58,4 +58,8 @@ module Listable
     [:thinking, :interactions, :willing, :discipline, :direction, :expectations, :overview]
   end
 
+  def choice_types
+    ['agree', 'meta', 'frequency', 'overview']
+  end
+
 end

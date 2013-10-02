@@ -35,9 +35,14 @@ class Survey < ActiveRecord::Base
       end
     # fill_question_with: [agree, meta, frequency, overview] : choices
     elsif method.start_with?("fill_question_with_")
-      choice_builder = "build_#{method[19..-9]}_choices".to_sym
-      q              = self.questions.build(args[0])
-      q.send(choice_builder)
+      choice_type    = method[19..-9]
+      if self.choice_types.include?(choice_type)
+        choice_builder = "build_#{choice_type}_choices".to_sym
+        q              = self.questions.build(args[0])
+        q.send(choice_builder)
+      else
+        raise ArgumentError, "Can't find #{choice_type} choice type"
+      end
     else
       super
     end
